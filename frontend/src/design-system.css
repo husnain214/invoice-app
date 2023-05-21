@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap');
+
+:root {
+  --cornflower-blue: hsl(252 94% 67%);
+  --heliotrope: hsl(252 100% 73%);
+  --mirage: hsl(233 31% 17%);
+  --ebony-clay: hsl(233 30% 21%);
+  --selago: hsl(231, 77%, 93%);
+  --bali-hai: hsl(231 20% 61%);
+  --ship-cove: hsl(231 37% 63%);
+  --vulcan: hsl(228 29% 7%);
+  --burnt-siena: hsl(0 80% 63%);
+  --mona-lisa: hsl(0 100% 80%);
+  --whisper: hsl(240 27% 98%);
+  --midnight-sapphire: hsl(233 30% 11%);
+  --shamrock: hsl(160 67% 52%);
+  --pizazz: hsl(34, 100%, 50%);
+  --oxford-blue: hsl(231, 20%, 27%);
+  --white: hsl(0 0% 100%);
+  --frosty-pearl: hsl(228, 71%, 99%);
+  --midnight-indigo: hsl(232 38% 45% / 0.251);
+
+  --ff-primary: 'League Spartan', sans-serif;
+
+  --fs-400: 2.25rem;
+  --fs-300: 1.5rem;
+  --fs-200: 0.9375rem;
+  --fs-100: 0.8125rem;
+
+  --fw-semi-bold: 500;
+  --fw-bold: 700;
+
+  --letter-spacing-400: -1.125px;
+  --letter-spacing-300: -0.75px;
+  --letter-spacing-200: -0.25px;
+  --letter-spacing-100: -0.1px; 
+  
+  --line-height-500: 33px;
+  --line-height-400: 24px;
+  --line-height-300: 22px;
+  --line-height-200: 18px;
+  --line-height-100: 15px;
+
+}
+
+body[data-theme="light"] {
+  --clr-primary: var(--vulcan);
+  --clr-secondary: var(--bali-hai);
+
+  --clr-body: var(--whisper);
+
+  --input-bg-clr: var(--white);
+  --input-border-clr: var(--selago);
+  --input-label: var(--ship-cove);
+
+  --popover-text: var(--vulcan);
+  --popover-shadow: var(--midnight-indigo);
+}
+
+body[data-theme="dark"] {
+  --clr-primary: var(--white);
+  --clr-secondary: var(--selago);
+  --clr-body: var(--vulcan);
+
+  --input-bg-clr: var(--mirage);
+  --input-border-clr: var(--ebony-clay);
+  --input-label: var(--selago);
+
+  --popover-text: var(--selago);
+  --popover-shadow: var(--vulcan);
+}
+
+/* CSS Reset by Andy Bell https://andy-bell.co.uk/a-modern-css-reset/ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  font-weight: var(--fw-bold);
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body, #root {
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-100);
+  font-weight: var(--fw-semi-bold);
+  color: var(--clr-primary);
+  background-color: var(--clr-body);
+  letter-spacing: var(--letter-spacing-100);
+  line-height: var(--line-height-200);
+  text-rendering: optimizeSpeed;  
+}
+
+button {
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* general */
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.justify-sb {
+  justify-content: space-between;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.container {
+  width: min(45.625rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-spacing, 1rem);
+}
+
+/* colors */
+
+.bg-primary { background-color: var(--clr-primary); }
+.bg-secondary { background-color: var(--clr-secondary); }
+.bg-body { background-color: var(--bg-body); }
+.bg-oxford-blue { background-color: var(--oxford-blue); }
+
+.text-primary { color: var(--clr-primary); }
+.text-secondary { color: var(--clr-secondary); }
+.text-oxford-blue { color: var(--oxford-blue); }
+
+/* typography */
+
+.fs-400 { font-size: var(--fs-400); }
+.fs-300 { font-size: var(--fs-300); }
+.fs-200 { font-size: var(--fs-200); }
+.fs-100 { font-size: var(--fs-100); }
+
+.fw-semi-bold { font-weight: var(--fw-semi-bold); }
+.fw-bold { font-weight: var(--fw-bold); }
+
+.letter-spacing-400 { letter-spacing: var(--letter-spacing-400); }
+.letter-spacing-300 { letter-spacing: var(--letter-spacing-300); }
+.letter-spacing-200 { letter-spacing: var(--letter-spacing-200); }
+.letter-spacing-100 { letter-spacing: var(--letter-spacing-100); }
+
+.line-height-500 { line-height: var(--line-height-500); }
+.line-height-400 { line-height: var(--line-height-400); }
+.line-height-300 { line-height: var(--line-height-300); }
+.line-height-200 { line-height: var(--line-height-200); }
+.line-height-100 { line-height: var(--line-height-100); }
+
+/* ------------------- */
+/* Components          */
+/* ------------------- */
+
+/* buttons */
+
+body[data-theme='light'] .button {
+  --edit-bg-clr: var(--selago);
+  --edit-text-clr: var(--ship-cove);
+  --edit-hover-bg-clr: var(--whisper);
+
+  --draft-text-clr: var(--bali-hai);
+  --draft-hover-bg-clr: var(--vulcan);
+}
+
+body[data-theme='dark'] .button {
+  --edit-bg-clr: var(--ebony-clay);
+  --edit-text-clr: var(--selago);
+  --edit-hover-bg-clr: var(--white);
+
+  --draft-text-clr: var(--selago);
+  --draft-hover-bg-clr: var(--mirage);
+}
+
+.button {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  font-size: var(--fs-200);
+  padding: var(--button-padding, 0.8125rem 1.5rem);
+  
+  cursor: pointer;
+  border-radius: 100vmax;
+  transition: 100ms ease-in;
+
+  --draft-bg-clr: var(--oxford-blue);
+}
+
+.button div {
+  padding: 0.625rem;
+  background-color: var(--white);
+  aspect-ratio: 1;
+  border-radius: 100vmax;
+}
+
+.button--new-invoice,
+.button--mark {
+  --button-padding: 0.5rem 1.0625rem 0.5rem 0.5rem;
+  color: var(--white);
+  background-color: var(--cornflower-blue);
+}
+
+:is(.button--new-invoice, .button--mark):is(:hover, :focus-visible) {
+  background-color: var(--heliotrope);
+}
+
+.button--edit {
+  background-color: var(--edit-bg-clr);
+  color: var(--edit-text-clr);
+}
+
+.button--edit:is(:hover, :focus-visible) {
+  background-color: var(--edit-hover-bg-clr);
+}
+
+.button--draft {
+  background-color: var(--draft-bg-clr);
+  color: var(--draft-text-clr);
+}
+
+.button--draft:is(:hover, :focus-visible) {
+  background-color: var(--draft-hover-bg-clr);
+}
+
+.button--delete {
+  background-color: var(--burnt-siena);
+  color: var(--white);
+}
+
+.button--delete:is(:hover, :focus-visible) {
+  background-color: var(--mona-lisa);
+}
+
+.button--add {
+  background-color: var(--frosty-pearl);
+  color: var(--bali-hai);
+  --button-padding: 0.8125rem 5rem; 
+}
+
+.button--add:is(:hover, :focus-visible) {
+  background-color: var(--selago);
+}
+
+/* form elements */
+
+.form-element {
+  font-size: var(--fs-200);
+  font-weight: 700;
+}
+
+.form-element .label {
+  color: var(--input-label);
+  font-size: var(--fs-100);
+}
+
+.form-element > * + * {
+  margin-top: 0.5625rem;
+}
+
+.form-element .input {
+  padding-left: 20px;
+  border: 1px solid var(--input-border-clr);
+  outline: 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--input-bg-clr);
+  color: var(--text-primary);
+}
+
+.form-element--button {
+  background-color: var(--input-bg-clr);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1rem;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.form-element *:focus {
+  border-color: var(--cornflower-blue);
+}
+
+.react-aria-Item {
+  font-size: var(--fs-200);
+  font-weight: 700;
+  padding: .5em 2em .5em 1em;
+}
+
+.react-aria-Item:not(:last-child) {
+  border-bottom: 1px solid var(--input-border-clr);
+}
+
+:is(.react-aria-CalendarCell, .react-aria-Item):is([data-hovered], [data-focus-visible]) {
+  color: var(--cornflower-blue);
+  outline: none;
+}
+
+.react-aria-Popover {
+  background-color: var(--input-bg-clr);
+  box-shadow: 0px 10px 20px var(--popover-shadow);
+  border-radius: 8px;
+  color: var(--popover-text);
+}
+
+
+.react-aria-Dialog {
+  padding: 1rem;
+}
+
+.react-aria-Popover header .form-element--button {
+  padding: 0;
+}
+
+.react-aria-CalendarGridHeader {
+  display: none;
+}
+
+.react-aria-CalendarGrid {
+  margin-top: 1rem;
+  margin-inline: auto;
+}
+
+.react-aria-CalendarGrid td:not(:last-child) {
+  padding-right: 0.9375rem;
+}
+
+.react-aria-CalendarGrid tr:not(:last-child) {
+  padding-bottom: 0.9375rem;
+}
+
+.react-aria-CalendarCell {  
+  cursor: pointer;
+  outline: 0;
+  font-weight: var(--fw-bold);
+}
+
+

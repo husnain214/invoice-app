@@ -1,0 +1,77 @@
+.user-page.grid {
+  min-height: 100vh;
+  grid-template-columns: 6% 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+    'sidebar header'
+    'sidebar content';
+}
+
+.user-page > .sidebar {
+  grid-area: sidebar;
+}
+
+.user-page > .header {
+  grid-area: header;
+  margin-top: min(5vw, 5rem);
+}
+
+.user-page > .main-content {
+  grid-area: content;
+  place-self: center;
+  text-align: center;
+  --flow-spacing: 4.125rem;
+}
+
+.user-page > .main-content p {
+  --flow-spacing: 1rem;
+}
+
+.sidebar {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  justify-items: stretch;
+  grid-template-areas: 
+      'logo'
+      '.'
+      'theme-icon'
+      'avatar';
+  border-radius: 0 20px 20px 0;
+  overflow: hidden;
+}
+
+.sidebar > * > * {
+  margin-inline: auto;
+  padding-block: 2em;
+}
+
+.sidebar > *:nth-child(1) {
+  grid-area: logo;
+  background-color: var(--cornflower-blue);
+  position: relative;
+  isolation: isolate;
+}
+
+.sidebar > *:nth-child(1)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: 50%;
+  background-color: var(--heliotrope);
+  z-index: -1;
+  border-radius: 20px 0 0 0;
+}
+
+.sidebar > *:nth-child(2) {
+  grid-area: theme-icon;
+}
+
+.sidebar > *:nth-child(3) {
+  grid-area: avatar;
+}
+
+.sidebar > *:nth-child(3) > img {
+  border-radius: 50%;
+  overflow: hidden;
+  max-width: 2.5rem;
+}
