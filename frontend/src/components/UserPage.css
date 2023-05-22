@@ -1,10 +1,12 @@
 .user-page.grid {
   min-height: 100vh;
-  grid-template-columns: 6% 1fr;
+  grid-template-columns: minmax(min-content, 6.4375rem) 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: 
     'sidebar header'
     'sidebar content';
+
+  row-gap: 3rem;
 }
 
 .user-page > .sidebar {
@@ -17,6 +19,7 @@
 }
 
 .user-page > .main-content {
+  padding-bottom: 2rem;
   grid-area: content;
   place-self: center;
   text-align: center;
@@ -38,6 +41,10 @@
       'avatar';
   border-radius: 0 20px 20px 0;
   overflow: hidden;
+
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
 .sidebar > * > * {

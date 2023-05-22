@@ -13,8 +13,8 @@
   --mona-lisa: hsl(0 100% 80%);
   --whisper: hsl(240 27% 98%);
   --midnight-sapphire: hsl(233 30% 11%);
-  --shamrock: hsl(160 67% 52%);
-  --pizazz: hsl(34, 100%, 50%);
+  --shamrock: 160 67% 52%;
+  --pizazz: 34 100% 50%;
   --oxford-blue: hsl(231, 20%, 27%);
   --white: hsl(0 0% 100%);
   --frosty-pearl: hsl(228, 71%, 99%);
@@ -192,6 +192,10 @@ select {
   justify-content: space-between;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .d-block {
   display: block;
 }
@@ -219,6 +223,7 @@ select {
 .text-primary { color: var(--clr-primary); }
 .text-secondary { color: var(--clr-secondary); }
 .text-oxford-blue { color: var(--oxford-blue); }
+.text-cornflower-blue { color: var(--cornflower-blue); }
 
 /* typography */
 

@@ -6,6 +6,7 @@ import imageAvatar from '../assets/image-avatar.jpg'
 import arrowDown from '../assets/icon-arrow-down.svg'
 import iconPlus from'../assets/icon-plus.svg'
 import imageEmpty from '../assets/illustration-empty.svg'
+import Invoice from './Invoice'
 
 const UserPage = () => {
   useEffect(() => {
@@ -50,7 +51,7 @@ const UserPage = () => {
         </header>
 
         <main className='main-content container flow'>
-          <div><img className='d-inline' src={imageEmpty} width='241' height='200' alt='illustration empty'/></div>
+          {/* <div><img className='d-inline' src={imageEmpty} width='241' height='200' alt='illustration empty'/></div>
           
           <div className='flow'>
             <h2 className='fs-400 letter-spacing-400 line-height-500'>There is nothing here</h2>
@@ -60,7 +61,16 @@ const UserPage = () => {
               <br />
               <span className='fw-bold'>New Invoice</span> button and get started
             </p>
-          </div>
+          </div> */}
+
+          <Invoice />
+          <Invoice />
+          <Invoice />
+          <Invoice />
+          <Invoice />
+          <Invoice />
+          <Invoice />
+          <Invoice />
         </main>
       </div>
     </>

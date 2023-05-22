@@ -1,0 +1,50 @@
+.invoice {
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  border-radius: 8px;
+  --flow-spacing: 1rem;
+  padding: 1.5em 1.3em;
+
+  background-color: var(--invoice-bg-clr);
+}
+
+body[data-theme='light'] {
+  --invoice-bg-clr: var(--white);
+}
+
+body[data-theme='dark'] {
+  --invoice-bg-clr: var(--mirage);
+}
+
+.invoice > *:nth-child(1) {
+  --gap: 2rem;
+}
+
+.invoice-status {
+  color: hsl( var(--accent-color) );
+  background-color: hsl( var(--accent-color) / .06 );
+  padding: 1em 1.8em;
+  border-radius: 6px;
+  position: relative;
+}
+
+.invoice-status::before {
+  content: '';
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: hsl( var(--accent-color) );
+
+  display: block;
+}
+
+.invoice-status--paid {
+  --accent-color: var(--shamrock);
+}
+
+.invoice-status--pending {
+  --accent-color: var(--pizazz);
+}
+
+.invoice-status--paid {
+  --accent-color: var(--oxford-blue);
+}
