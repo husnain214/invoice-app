@@ -1,0 +1,77 @@
+.invoice-form-container {
+  --left-spacing: 10rem;
+
+  position: absolute;
+  inset: 0;
+  left: calc(-1 * var(--left-spacing));
+  background-color: rgba(0, 0, 0, 0.26);
+  visibility: hidden;
+  z-index: -1;
+}
+
+.scroll-wrapper {
+  --padding-right: 3.5rem;
+ 
+  position: fixed;
+  transform: translateX(-100%);
+  transition: transform 500ms ease-in-out;
+  padding: 4rem 
+           var(--padding-right) 
+           4rem 
+           calc(var(--left-spacing) + var(--padding-right));
+  width: min(50rem, 100% - 2rem);
+  border-radius: 0 20px 20px 0;
+  height: 100vh;
+}
+
+.invoice-form {
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 1rem;
+}
+
+.invoice-form::-webkit-scrollbar {
+  width: .5rem;
+}
+
+.invoice-form::-webkit-scrollbar-track {
+  width: .5rem;
+  border-radius: 100vmax;
+}
+
+.invoice-form::-webkit-scrollbar-thumb {
+  width: .5rem;
+  background: var(--selago);
+  border-radius: 100vmax;
+}
+
+.invoice-form::-webkit-scrollbar-thumb:active {
+  background-color: var(--heliotrope);
+}
+
+.invoice-form-container[data-visible='true'] {
+  z-index: 2;
+  visibility: visible;
+}
+
+.invoice-form-container[data-visible='true'] > .scroll-wrapper {
+  transform: translate(0);
+}
+
+.invoice-form .form-section {
+  --flow-spacing: 1.5rem;
+}
+
+table tr.form-element {
+  grid-template-columns: 4fr 1fr 3fr 2fr 1fr;
+  align-items: end;
+}
+
+table tr.form-element > *:nth-child(4) {
+  align-self: center;
+  justify-self: center;
+}
+
+table tr.form-element > *:last-child {
+  align-self: center;
+}

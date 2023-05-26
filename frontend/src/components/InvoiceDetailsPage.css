@@ -1,0 +1,37 @@
+.invoice-controls, .invoice-details {
+  border-radius: 8px;
+  color: var(--text-accent);
+}
+
+.invoice-controls {
+  padding: 2em 3em;
+}
+
+.invoice-details {
+  padding: 3em;
+  margin-bottom: 2em;
+}
+
+.invoice-table {
+  background-color: var(--table-bg);
+  border-spacing: 2rem;
+  text-align: left;
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+}
+
+body[data-theme='light'] {
+  --table-bg: hsl(231 67% 99%);
+  --total-cost-bg: var(--oxford-blue);
+}
+
+body[data-theme='dark'] {
+  --table-bg: var(--ebony-clay);
+  --total-cost-bg: var(--vulcan);
+}
+
+.total-cost {
+  background-color: var(--total-cost-bg);
+  border-radius: 0 0 8px 8px;
+  padding: 3em 2em; 
+} 

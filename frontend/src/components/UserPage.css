@@ -1,26 +1,16 @@
-.user-page.grid {
+.user-page {
+  display: grid;
   min-height: 100vh;
   grid-template-columns: minmax(min-content, 6.4375rem) 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: 
-    'sidebar header'
-    'sidebar content';
-
-  row-gap: 3rem;
 }
 
-.user-page > .sidebar {
-  grid-area: sidebar;
-}
-
-.user-page > .header {
-  grid-area: header;
+:is(.user-page, .invoice-page) .header {
   margin-top: min(5vw, 5rem);
+  margin-bottom: 3rem;
 }
 
-.user-page > .main-content {
+.user-page .main-content {
   padding-bottom: 2rem;
-  grid-area: content;
   place-self: center;
   text-align: center;
   --flow-spacing: 4.125rem;
@@ -45,6 +35,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  z-index: 100;
 }
 
 .sidebar > * > * {

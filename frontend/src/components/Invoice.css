@@ -4,15 +4,11 @@
   --flow-spacing: 1rem;
   padding: 1.5em 1.3em;
 
-  background-color: var(--invoice-bg-clr);
+  background-color: var(--clr-neutral-bg);
 }
 
-body[data-theme='light'] {
-  --invoice-bg-clr: var(--white);
-}
-
-body[data-theme='dark'] {
-  --invoice-bg-clr: var(--mirage);
+a {
+  text-decoration: none;
 }
 
 .invoice > *:nth-child(1) {
@@ -22,9 +18,12 @@ body[data-theme='dark'] {
 .invoice-status {
   color: hsl( var(--accent-color) );
   background-color: hsl( var(--accent-color) / .06 );
-  padding: 1em 1.8em;
+  padding: 1em;
+  width: 6.5rem;
   border-radius: 6px;
   position: relative;
+  text-transform: capitalize;
+  justify-content: center;
 }
 
 .invoice-status::before {
@@ -45,6 +44,6 @@ body[data-theme='dark'] {
   --accent-color: var(--pizazz);
 }
 
-.invoice-status--paid {
+.invoice-status--draft {
   --accent-color: var(--oxford-blue);
 }
