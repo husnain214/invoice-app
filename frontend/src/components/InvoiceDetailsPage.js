@@ -4,8 +4,9 @@ import arrowLeft from '../assets/icon-arrow-left.svg'
 import './Invoice.css'
 import './InvoiceDetailsPage.css'
 
-const InvoiceDetailsPage = ({ invoices }) => {
+const InvoiceDetailsPage = ({ invoices, setInvoice, openInvoiceForm }) => {
   const { invoiceID } = useParams()
+
   const selectedInvoice = invoices.find( invoice => invoice.id === invoiceID)
   const { id, description, senderAddress, createdAt, paymentDue, clientName, clientAddress, clientEmail, items, total } = selectedInvoice
   return (
@@ -29,7 +30,10 @@ const InvoiceDetailsPage = ({ invoices }) => {
           </div>
 
           <div className='flex align-center justify-sb'>
-            <button className="button button--edit">Edit</button>
+            <button className="button button--edit" onClick={() => {
+              setInvoice(invoiceID)
+              openInvoiceForm(true)
+            }}>Edit</button>
             <button className="button button--delete">Delete</button>
             <button className="button button--mark">Mark as Paid</button>
           </div>

@@ -8,6 +8,7 @@ import InvoiceForm from './InvoiceForm'
 
 const UserPage = ({ invoices, toggleTheme }) => {
   const [invoicFormVisible, setInvoiceFormVisible] = useState(false)
+  const [selectedInvoice, setSelectedInvoice] = useState(null)
 
   return (
     <>
@@ -16,11 +17,21 @@ const UserPage = ({ invoices, toggleTheme }) => {
 
         <div className='p-relative'>
           <Routes>
-            <Route path='/' element={<InvoiceList openInvoiceForm={setInvoiceFormVisible} invoices={invoices} />} />
-            <Route path='/invoices/:invoiceID' element={<InvoiceDetailsPage invoices={invoices} />} />
+            <Route path='/' element={<InvoiceList 
+              openInvoiceForm={setInvoiceFormVisible} 
+              invoices={invoices} 
+              />
+            } />
+            <Route path='/invoices/:invoiceID' element={
+              <InvoiceDetailsPage 
+                setInvoice={setSelectedInvoice} 
+                invoices={invoices} 
+                openInvoiceForm={setInvoiceFormVisible} 
+              />
+            } />
           </Routes>
 
-          <InvoiceForm visibility={invoicFormVisible} setVisibility={setInvoiceFormVisible} />
+          <InvoiceForm visibility={invoicFormVisible} invoiceID={selectedInvoice} setVisibility={setInvoiceFormVisible} />
         </div>
       </div>
     </>

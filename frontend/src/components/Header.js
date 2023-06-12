@@ -1,3 +1,4 @@
+import {Button, Dialog, DialogTrigger, Popover, CheckboxGroup, Checkbox, Label} from 'react-aria-components'
 import arrowDown from '../assets/icon-arrow-down.svg'
 import iconPlus from'../assets/icon-plus.svg'
 
@@ -14,11 +15,38 @@ const Header = ({ showForm }) => {
       </div>
 
       <div className='flex'>
-        <button className='flex text-primary bg-body button'>
-          Filter by status
+        <DialogTrigger>
+          <Button className='flex text-primary bg-body button'>
+            Filter by status
 
-          <img src={arrowDown} alt='arrow down'/>
-        </button>
+            <img src={arrowDown} alt='arrow down'/>
+          </Button>
+          <Popover>
+            <Dialog>
+            <CheckboxGroup>
+              <Label className='sr-only'>Payment Status</Label>
+              <Checkbox value="soccer">
+                <div className="checkbox" aria-hidden="true">
+                  <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
+                </div>
+                <span className='fw-bold fs-200'>Draft</span> 
+              </Checkbox>
+              <Checkbox value="baseball">
+                <div className="checkbox" aria-hidden="true">
+                  <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
+                </div>
+                <span className='fw-bold fs-200'>Pending</span> 
+              </Checkbox>
+              <Checkbox value="basketball">
+                <div className="checkbox" aria-hidden="true">
+                  <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
+                </div>
+                <span className='fw-bold fs-200'>Paid</span> 
+              </Checkbox>
+            </CheckboxGroup>
+            </Dialog>
+          </Popover>
+        </DialogTrigger>
 
         <button 
           type='button'
