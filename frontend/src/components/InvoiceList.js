@@ -2,10 +2,10 @@ import imageEmpty from '../assets/illustration-empty.svg'
 import Invoice from './Invoice'
 import Header from './Header'
 
-const InvoiceList = ({ invoices, openInvoiceForm }) => {
+const InvoiceList = ({ invoices, openInvoiceForm, updateFilters }) => {
   return (
     <>
-      <Header showForm={ openInvoiceForm } />
+      <Header showForm={ openInvoiceForm } updateFilters={updateFilters} />
     
       <main className='main-content container flow'>
       {

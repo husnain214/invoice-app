@@ -1,11 +1,13 @@
-import {Button, Dialog, DialogTrigger, Popover, CheckboxGroup, Checkbox, Label} from 'react-aria-components'
+import { Button, Dialog, DialogTrigger, Popover, CheckboxGroup, Checkbox, Label } from 'react-aria-components'
 import arrowDown from '../assets/icon-arrow-down.svg'
 import iconPlus from'../assets/icon-plus.svg'
+import { useState } from 'react'
 
-const Header = ({ showForm }) => {
-  const handleClick = () => {
-    showForm(true)
-  } 
+const Header = ({ showForm, updateFilters }) => {
+  const [visibility, setVisibility] = useState('none')
+  const [paidChecked, setPaidChecked] = useState(false)
+  const [pendingChecked, setPendingChecked] = useState(false)
+  const [draftChecked, setDraftChecked] = useState(false)    
 
   return (
     <header className='header container flex justify-sb'>
@@ -15,42 +17,58 @@ const Header = ({ showForm }) => {
       </div>
 
       <div className='flex'>
-        <DialogTrigger>
-          <Button className='flex text-primary bg-body button'>
+          <Button className='flex text-primary bg-body button' onClick={() => setVisibility( visibility === '' ? 'none' : '')}>
             Filter by status
 
             <img src={arrowDown} alt='arrow down'/>
           </Button>
-          <Popover>
-            <Dialog>
+          
+          <div className='custom-popover' style={{ display: visibility }}>
             <CheckboxGroup>
               <Label className='sr-only'>Payment Status</Label>
-              <Checkbox value="soccer">
-                <div className="checkbox" aria-hidden="true">
-                  <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
+              <Checkbox
+                value='Draft'
+                isSelected={draftChecked}
+                onChange={() => {
+                  updateFilters('draft')
+                  setDraftChecked(draftChecked ? false : true)
+                }}>
+                <div className='checkbox' aria-hidden='true'>
+                  <svg viewBox='0 0 18 18'><polyline points='1 9 7 14 15 4' /></svg>
                 </div>
-                <span className='fw-bold fs-200'>Draft</span> 
+                <span className='fw-bold fs-200'>Draft</span>
               </Checkbox>
-              <Checkbox value="baseball">
-                <div className="checkbox" aria-hidden="true">
-                  <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
+              <Checkbox
+                value='Pending'
+                isSelected={pendingChecked}
+                onChange={() => {
+                  updateFilters('pending')
+                  setPendingChecked(pendingChecked ? false : true)
+                }}>
+                <div className='checkbox' aria-hidden='true'>
+                  <svg viewBox='0 0 18 18'><polyline points='1 9 7 14 15 4' /></svg>
                 </div>
-                <span className='fw-bold fs-200'>Pending</span> 
+                <span className='fw-bold fs-200'>Pending</span>
               </Checkbox>
-              <Checkbox value="basketball">
-                <div className="checkbox" aria-hidden="true">
-                  <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
+            
+              <Checkbox
+                value='Paid'
+                isSelected={true}
+                onChange={() => {
+                  updateFilters('paid')
+                  setPaidChecked(paidChecked ? false : true)
+                }}>
+                <div className='checkbox' aria-hidden='true'>
+                  <svg viewBox='0 0 18 18'><polyline points='1 9 7 14 15 4' /></svg>
                 </div>
-                <span className='fw-bold fs-200'>Paid</span> 
+                <span className='fw-bold fs-200'>Paid</span>
               </Checkbox>
             </CheckboxGroup>
-            </Dialog>
-          </Popover>
-        </DialogTrigger>
+          </div>
 
         <button 
           type='button'
-          onClick={handleClick} 
+          onClick={() => showForm(true)} 
           className='button button--new-invoice'>
           <div><img src={iconPlus} height='10' width='10' alt='plus' /></div>
 

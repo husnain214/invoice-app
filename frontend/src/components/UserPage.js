@@ -6,7 +6,7 @@ import InvoiceDetailsPage from './InvoiceDetailsPage'
 import { Route, Routes } from 'react-router-dom'
 import InvoiceForm from './InvoiceForm'
 
-const UserPage = ({ invoices, toggleTheme }) => {
+const UserPage = ({ invoices, toggleTheme, updateFilters }) => {
   const [invoicFormVisible, setInvoiceFormVisible] = useState(false)
   const [selectedInvoice, setSelectedInvoice] = useState(null)
 
@@ -20,6 +20,7 @@ const UserPage = ({ invoices, toggleTheme }) => {
             <Route path='/' element={<InvoiceList 
               openInvoiceForm={setInvoiceFormVisible} 
               invoices={invoices} 
+              updateFilters={updateFilters}
               />
             } />
             <Route path='/invoices/:invoiceID' element={
