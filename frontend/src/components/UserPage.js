@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+
 import './UserPage.css'
+
 import SideBar from './SideBar'
 import InvoiceList from './InvoiceList.js'
 import InvoiceDetailsPage from './InvoiceDetailsPage'
-import { Route, Routes } from 'react-router-dom'
 import InvoiceForm from './InvoiceForm'
 
 const UserPage = ({ invoices, toggleTheme, updateFilters }) => {
@@ -23,6 +25,7 @@ const UserPage = ({ invoices, toggleTheme, updateFilters }) => {
               updateFilters={updateFilters}
               />
             } />
+
             <Route path='/invoices/:invoiceID' element={
               <InvoiceDetailsPage 
                 setInvoice={setSelectedInvoice} 
@@ -32,7 +35,11 @@ const UserPage = ({ invoices, toggleTheme, updateFilters }) => {
             } />
           </Routes>
 
-          <InvoiceForm visibility={invoicFormVisible} invoiceID={selectedInvoice} setVisibility={setInvoiceFormVisible} />
+          <InvoiceForm 
+            visibility={invoicFormVisible} 
+            invoiceID={selectedInvoice} 
+            setVisibility={setInvoiceFormVisible} 
+          />
         </div>
       </div>
     </>

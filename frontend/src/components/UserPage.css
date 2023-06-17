@@ -1,16 +1,19 @@
-.user-page {
-  display: grid;
-  min-height: 100vh;
-  grid-template-columns: minmax(min-content, 6.4375rem) 1fr;
+@media (width > 45em) {
+  .user-page {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: minmax(min-content, 6.4375rem) 1fr;
+  }
 }
 
 :is(.user-page, .invoice-page) .header {
-  margin-top: min(5vw, 5rem);
-  margin-bottom: 3rem;
+  margin-block: 5em;
+  padding-inline: clamp(1em, 3vw, 3em);
 }
 
 .user-page .main-content {
   padding-bottom: 2rem;
+  padding-inline: clamp(1em, 3vw, 3em);
   place-self: center;
   text-align: center;
   --flow-spacing: 4.125rem;
@@ -22,32 +25,53 @@
 
 .sidebar {
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-columns: minmax(auto, 80px) 1fr minmax(auto, 80px) minmax(auto, 80px);
+  grid-template-rows: auto;
+  grid-template-areas: 'logo . theme-icon avatar';
+
   justify-items: stretch;
-  grid-template-areas: 
-      'logo'
-      '.'
-      'theme-icon'
-      'avatar';
-  border-radius: 0 20px 20px 0;
   overflow: hidden;
 
   position: sticky;
   top: 0;
-  height: 100vh;
   z-index: 100;
+}
+
+@media (width > 45em) {
+  .sidebar {
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    'logo'
+    '.'
+    'theme-icon'
+    'avatar';
+    height: 100vh;
+    border-radius: 0 20px 20px 0;
+  }
+
+  .user-page .main-content { 
+    padding-inline: 0; 
+    margin-top: min(5vw, 5rem);
+    margin-bottom: 3rem;
+  }
 }
 
 .sidebar > * > * {
   margin-inline: auto;
-  padding-block: 2em;
+  padding-block: clamp(1em, 3vw, 2em);
 }
 
 .sidebar > *:nth-child(1) {
   grid-area: logo;
   background-color: var(--cornflower-blue);
+  border-radius: 0 20px 20px 0;
+  overflow: hidden;
   position: relative;
   isolation: isolate;
+
+  display: grid;
+  place-items: center;
 }
 
 .sidebar > *:nth-child(1)::before {

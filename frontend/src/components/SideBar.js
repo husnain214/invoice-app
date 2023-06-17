@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom'
+
 import logo from '../assets/logo.svg'
 import iconSun from '../assets/icon-sun.svg'
 import imageAvatar from '../assets/image-avatar.jpg'
-import { Link } from 'react-router-dom'
 
 const SideBar = ({ toggleTheme }) => {
   return (

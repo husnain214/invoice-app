@@ -12,6 +12,12 @@
   margin-bottom: 2em;
 }
 
+@media (width < 45em) {
+  .invoice-details {
+    margin-inline: clamp(1em, 3vw, 3em);
+  }
+}
+
 .invoice-table {
   background-color: var(--table-bg);
   border-spacing: 2rem;

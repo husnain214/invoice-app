@@ -15,7 +15,7 @@
   --midnight-sapphire: hsl(233 30% 11%);
   --shamrock: 160 67% 52%;
   --pizazz: 34 100% 50%;
-  --oxford-blue: hsl(231, 20%, 27%);
+  --oxford-blue: 231 20% 27%;
   --white: hsl(0 0% 100%);
   --frosty-pearl: hsl(228, 71%, 99%);
   --midnight-indigo: hsl(232 38% 45% / 0.251);
@@ -252,14 +252,14 @@ select {
 .bg-primary { background-color: var(--clr-primary); }
 .bg-secondary { background-color: var(--clr-secondary); }
 .bg-body { background-color: var(--bg-body); }
-.bg-oxford-blue { background-color: var(--oxford-blue); }
+.bg-oxford-blue { background-color: hsl( var(--oxford-blue) ); }
 .bg-neutral { background-color: var(--clr-neutral-bg); }
 
 .text-primary { color: var(--clr-primary); }
 .text-secondary { color: var(--clr-secondary); }
 .text-accent { color: var(--text-accent); }
 .text-white { color: var(--white); }
-.text-oxford-blue { color: var(--oxford-blue); }
+.text-oxford-blue { color: hsl( var(--oxford-blue) ); }
 .text-cornflower-blue { color: var(--cornflower-blue); }
 
 /* typography */
@@ -319,7 +319,7 @@ body[data-theme='dark'] .button {
   border-radius: 100vmax;
   transition: 100ms ease-in;
 
-  --draft-bg-clr: var(--oxford-blue);
+  --draft-bg-clr: hsl( var(--oxford-blue) );
 }
 
 .button div {

@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogTrigger, Popover, CheckboxGroup, Checkbox, Label } from 'react-aria-components'
+import { Button, CheckboxGroup, Checkbox, Label } from 'react-aria-components'
 import arrowDown from '../assets/icon-arrow-down.svg'
 import iconPlus from'../assets/icon-plus.svg'
 import { useState } from 'react'
@@ -17,13 +17,17 @@ const Header = ({ showForm, updateFilters }) => {
       </div>
 
       <div className='flex'>
-          <Button className='flex text-primary bg-body button' onClick={() => setVisibility( visibility === '' ? 'none' : '')}>
+          <Button 
+            aria-controls='filter-popover' 
+            aria-expanded={visibility === 'none' ? false : true} 
+            className='flex text-primary bg-body button' 
+            onClick={() => setVisibility( visibility === '' ? 'none' : '')}>
             Filter by status
 
             <img src={arrowDown} alt='arrow down'/>
           </Button>
           
-          <div className='custom-popover' style={{ display: visibility }}>
+          <div className='custom-popover' id='filter-popover' style={{ display: visibility }}>
             <CheckboxGroup>
               <Label className='sr-only'>Payment Status</Label>
               <Checkbox
@@ -38,6 +42,7 @@ const Header = ({ showForm, updateFilters }) => {
                 </div>
                 <span className='fw-bold fs-200'>Draft</span>
               </Checkbox>
+
               <Checkbox
                 value='Pending'
                 isSelected={pendingChecked}
