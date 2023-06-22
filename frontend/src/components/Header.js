@@ -3,27 +3,40 @@ import arrowDown from '../assets/icon-arrow-down.svg'
 import iconPlus from'../assets/icon-plus.svg'
 import { useState } from 'react'
 
-const Header = ({ showForm, updateFilters }) => {
+const Header = ({ showForm, updateFilters, invoiceCount }) => {
   const [visibility, setVisibility] = useState('none')
   const [paidChecked, setPaidChecked] = useState(false)
   const [pendingChecked, setPendingChecked] = useState(false)
   const [draftChecked, setDraftChecked] = useState(false)    
 
+  const getInvoiceCount = () => {
+    if(invoiceCount === 0) return 'No invoices'
+    else {
+      return (
+        <>
+          <span className='hidden-mobile'>There are</span> {invoiceCount} invoices
+        </>
+      )
+    }
+  }
+
   return (
     <header className='header container flex justify-sb'>
       <div>
         <h1 className='fs-400 letter-spacing-400 line-height-500'>Invoices</h1>
-        <p className='text-secondary'>No invoices</p>
+        <p className='text-secondary'>
+          {getInvoiceCount()}
+        </p>
       </div>
 
-      <div className='flex'>
-          <Button 
-            aria-controls='filter-popover' 
-            aria-expanded={visibility === 'none' ? false : true} 
-            className='flex text-primary bg-body button' 
+      <div className='flex align-center'>
+        <div className='filter-wrapper'>
+          <Button
+            aria-controls='filter-popover'
+            aria-expanded={visibility === 'none' ? false : true}
+            className='flex text-primary bg-body button'
             onClick={() => setVisibility( visibility === '' ? 'none' : '')}>
-            Filter by status
-
+            <span>Filter<span className='hidden-mobile'> by status</span> </span>
             <img src={arrowDown} alt='arrow down'/>
           </Button>
           
@@ -42,7 +55,6 @@ const Header = ({ showForm, updateFilters }) => {
                 </div>
                 <span className='fw-bold fs-200'>Draft</span>
               </Checkbox>
-
               <Checkbox
                 value='Pending'
                 isSelected={pendingChecked}
@@ -55,7 +67,7 @@ const Header = ({ showForm, updateFilters }) => {
                 </div>
                 <span className='fw-bold fs-200'>Pending</span>
               </Checkbox>
-            
+          
               <Checkbox
                 value='Paid'
                 isSelected={true}
@@ -70,6 +82,7 @@ const Header = ({ showForm, updateFilters }) => {
               </Checkbox>
             </CheckboxGroup>
           </div>
+        </div>
 
         <button 
           type='button'
@@ -77,7 +90,7 @@ const Header = ({ showForm, updateFilters }) => {
           className='button button--new-invoice'>
           <div><img src={iconPlus} height='10' width='10' alt='plus' /></div>
 
-          New Invoice
+          <span>New <span className='hidden-mobile'>Invoice</span></span>
         </button>
       </div>
     </header>

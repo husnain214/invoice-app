@@ -1,6 +1,6 @@
 .invoice-controls, .invoice-details {
   border-radius: 8px;
-  color: var(--text-accent);
+  color: hsl( var(--text-accent) );
 }
 
 .invoice-controls {
@@ -9,25 +9,44 @@
 
 .invoice-details {
   padding: 3em;
-  margin-bottom: 2em;
+  margin-block: 2em;
+}
+
+.invoice-details--location {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 2rem;
+}
+
+.main-content .flex {
+  flex-wrap: wrap;
 }
 
 @media (width < 45em) {
   .invoice-details {
     margin-inline: clamp(1em, 3vw, 3em);
   }
+
+  .invoice-controls > div {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
-.invoice-table {
-  background-color: var(--table-bg);
+.invoice-table, .invoice-items {
+  background-color: hsl( var(--table-bg) );
   border-spacing: 2rem;
   text-align: left;
   border-radius: 8px 8px 0 0;
   width: 100%;
 }
 
+.invoice-items { 
+  padding: 1rem;
+}
+
 body[data-theme='light'] {
-  --table-bg: hsl(231 67% 99%);
+  --table-bg: 231 67% 99%;
   --total-cost-bg: var(--oxford-blue);
 }
 
@@ -37,7 +56,7 @@ body[data-theme='dark'] {
 }
 
 .total-cost {
-  background-color: var(--total-cost-bg);
+  background-color: hsl( var(--total-cost-bg) );
   border-radius: 0 0 8px 8px;
   padding: 3em 2em; 
 } 

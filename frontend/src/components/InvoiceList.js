@@ -5,7 +5,7 @@ import Header from './Header'
 const InvoiceList = ({ invoices, openInvoiceForm, updateFilters }) => {
   return (
     <>
-      <Header showForm={ openInvoiceForm } updateFilters={updateFilters} />
+      <Header showForm={ openInvoiceForm } invoiceCount = {invoices.length} updateFilters={updateFilters} />
     
       <main className='main-content container flow'>
       {

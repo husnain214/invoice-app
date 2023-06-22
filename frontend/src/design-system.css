@@ -1,24 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap');
 
 :root {
-  --cornflower-blue: hsl(252 94% 67%);
-  --heliotrope: hsl(252 100% 73%);
-  --mirage: hsl(233 31% 17%);
-  --ebony-clay: hsl(233 30% 21%);
-  --selago: hsl(231, 77%, 93%);
-  --bali-hai: hsl(231 20% 61%);
-  --ship-cove: hsl(231 37% 63%);
-  --vulcan: hsl(228 29% 7%);
-  --burnt-siena: hsl(0 80% 63%);
-  --mona-lisa: hsl(0 100% 80%);
-  --whisper: hsl(240 27% 98%);
-  --midnight-sapphire: hsl(233 30% 11%);
+  --cornflower-blue: 252 94% 67%;
+  --heliotrope: 252 100% 73%;
+  --mirage: 233 31% 17%;
+  --ebony-clay: 233 30% 21%;
+  --selago: 231, 77%, 93%;
+  --bali-hai: 231 20% 61%;
+  --ship-cove: 231 37% 63%;
+  --vulcan: 228 29% 7%;
+  --burnt-siena: 0 80% 63%;
+  --mona-lisa: 0 100% 80%;
+  --whisper: 240 27% 98%;
+  --midnight-sapphire: 233 30% 11%;
   --shamrock: 160 67% 52%;
   --pizazz: 34 100% 50%;
   --oxford-blue: 231 20% 27%;
-  --white: hsl(0 0% 100%);
-  --frosty-pearl: hsl(228, 71%, 99%);
-  --midnight-indigo: hsl(232 38% 45% / 0.251);
+  --white: 0 0% 100%;
+  --frosty-pearl: 228, 71%, 99%;
+  --midnight-indigo: 232 38% 45% / 0.251;
 
   --ff-primary: 'League Spartan', sans-serif;
 
@@ -41,6 +41,16 @@
   --line-height-200: 18px;
   --line-height-100: 15px;
 
+}
+
+@media (width < 45em) {
+  :root {
+    --fs-400: 1.5rem;
+  }
+
+  .hidden-mobile {
+    display: none !important;
+  }
 }
 
 body[data-theme="light"] {
@@ -128,8 +138,8 @@ body {
   font-family: var(--ff-primary);
   font-size: var(--fs-100);
   font-weight: var(--fw-semi-bold);
-  color: var(--clr-primary);
-  background-color: var(--clr-body);
+  color: hsl( var(--clr-primary) );
+  background-color: hsl( var(--clr-body) );
   letter-spacing: var(--letter-spacing-100);
   line-height: var(--line-height-200);
   text-rendering: optimizeSpeed;  
@@ -249,18 +259,18 @@ select {
 
 /* colors */
 
-.bg-primary { background-color: var(--clr-primary); }
-.bg-secondary { background-color: var(--clr-secondary); }
-.bg-body { background-color: var(--bg-body); }
+.bg-primary { background-color: hsl( var(--clr-primary) ); }
+.bg-secondary { background-color: hsl( var(--clr-secondary) ); }
+.bg-body { background-color: hsl( var(--bg-body) ); }
 .bg-oxford-blue { background-color: hsl( var(--oxford-blue) ); }
-.bg-neutral { background-color: var(--clr-neutral-bg); }
+.bg-neutral { background-color: hsl( var(--clr-neutral-bg) ); }
 
-.text-primary { color: var(--clr-primary); }
-.text-secondary { color: var(--clr-secondary); }
-.text-accent { color: var(--text-accent); }
-.text-white { color: var(--white); }
+.text-primary { color: hsl( var(--clr-primary) ); }
+.text-secondary { color: hsl( var(--clr-secondary) ); }
+.text-accent { color: hsl( var(--text-accent) ); }
+.text-white { color: hsl( var(--white) ); }
 .text-oxford-blue { color: hsl( var(--oxford-blue) ); }
-.text-cornflower-blue { color: var(--cornflower-blue); }
+.text-cornflower-blue { color: hsl( var(--cornflower-blue) ); }
 
 /* typography */
 
@@ -313,7 +323,7 @@ body[data-theme='dark'] .button {
   align-items: center;
 
   font-size: var(--fs-200);
-  padding: var(--button-padding, 0.8125rem 1.5rem);
+  padding: var(--button-padding, 0.8125rem clamp(1rem, 2vw, 1.5rem));
   
   cursor: pointer;
   border-radius: 100vmax;
@@ -324,7 +334,7 @@ body[data-theme='dark'] .button {
 
 .button div {
   padding: 0.625rem;
-  background-color: var(--white);
+  background-color: hsl( var(--white) );
   aspect-ratio: 1;
   border-radius: 100vmax;
 }
@@ -335,44 +345,44 @@ body[data-theme='dark'] .button {
 
 .button--new-invoice,
 .button--mark {
-  color: var(--white);
-  background-color: var(--cornflower-blue);
+  color: hsl( var(--white) );
+  background-color: hsl( var(--cornflower-blue) );
 }
 
 :is(.button--new-invoice, .button--mark):is(:hover, :focus-visible) {
-  background-color: var(--heliotrope);
+  background-color: hsl( var(--heliotrope) );
 }
 
 .button--edit {
-  background-color: var(--edit-bg-clr);
-  color: var(--edit-text-clr);
+  background-color: hsl( var(--edit-bg-clr) );
+  color: hsl( var(--edit-text-clr) );
 }
 
 .button--edit:is(:hover, :focus-visible) {
-  background-color: var(--edit-hover-bg-clr);
+  background-color: hsl( var(--edit-hover-bg-clr) );
 }
 
 .button--draft {
-  background-color: var(--draft-bg-clr);
-  color: var(--draft-text-clr);
+  background-color: hsl( var(--draft-bg-clr) );
+  color: hsl( var(--draft-text-clr) );
 }
 
 .button--draft:is(:hover, :focus-visible) {
-  background-color: var(--draft-hover-bg-clr);
+  background-color: hsl( var(--draft-hover-bg-clr) );
 }
 
 .button--delete {
-  background-color: var(--burnt-siena);
-  color: var(--white);
+  background-color: hsl( var(--burnt-siena) );
+  color: hsl( var(--white) );
 }
 
 .button--delete:is(:hover, :focus-visible) {
-  background-color: var(--mona-lisa);
+  background-color: hsl( var(--mona-lisa) );
 }
 
 .button--add, .button--discard{
-  background-color: var(--frosty-pearl);
-  color: var(--bali-hai);
+  background-color: hsl( var(--frosty-pearl) );
+  color: hsl( var(--bali-hai) );
   display: block;
 }
 
@@ -381,7 +391,7 @@ body[data-theme='dark'] .button {
 }
 
 :is(.button--add, .button--discard):is(:hover, :focus-visible) {
-  background-color: var(--selago);
+  background-color: hsl( var(--selago) );
 }
 
 /* form elements */
@@ -394,7 +404,7 @@ body[data-theme='dark'] .button {
 }
 
 .form-element .label {
-  color: var(--input-label);
+  color: hsl( var(--input-label) );
   font-size: var(--fs-100);
 }
 
@@ -403,20 +413,21 @@ body[data-theme='dark'] .button {
 }
 
 .form-element .input {
-  padding: 1rem 1.5rem;
+  padding: 1rem clamp(1rem, 3vw, 1.5rem);
   border: 1px solid var(--input-border-clr);
   outline: 0;
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--input-bg-clr);
-  color: var(--text-primary);
+  background-color: hsl( var(--input-bg-clr) );
+  color: hsl( var(--text-primary) );
   width: 100%;
 }
 
 .form-element--button {
-  background-color: var(--input-bg-clr);
+  flex-shrink: 0;
+  background-color: hsl( var(--input-bg-clr) );
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -426,7 +437,7 @@ body[data-theme='dark'] .button {
 }
 
 .form-element *:focus {
-  border-color: var(--cornflower-blue);
+  border-color: hsl( var(--cornflower-blue) );
 }
 
 .react-aria-Item {
@@ -436,27 +447,33 @@ body[data-theme='dark'] .button {
 }
 
 .react-aria-Item:not(:last-child) {
-  border-bottom: 1px solid var(--input-border-clr);
+  border-bottom: 1px solid hsl( var(--input-border-clr) );
 }
 
 :is(.react-aria-CalendarCell, .react-aria-Item):is([data-hovered], [data-focus-visible]) {
-  color: var(--cornflower-blue);
+  color: hsl( var(--cornflower-blue) );
   outline: none;
 }
 
+.filter-wrapper {
+  position: relative;
+}
+
 .custom-popover {
-  position: fixed;
-  top: 130px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%);
   z-index: 9999;
   padding: 1em;
 }
 
 .react-aria-Popover, 
 .custom-popover {
-  background-color: var(--input-bg-clr);
-  box-shadow: 0px 10px 20px var(--popover-shadow);
+  background-color: hsl( var(--input-bg-clr) );
+  box-shadow: 0px 10px 20px hsl( var(--popover-shadow) );
   border-radius: 8px;
-  color: var(--popover-text);
+  color: hsl( var(--popover-text) );
   min-width: 13rem;
 }
 
@@ -523,14 +540,14 @@ body[data-theme='dark'] .button {
   align-items: center;
   gap: 0.571rem;
   font-size: 1.143rem;
-  color: var(--label-color);
+  color: hsl( var(--label-color) );
 }
 .react-aria-Checkbox .checkbox {
   width: .9rem;
   height: .9rem;
   outline: 2px solid white;
   border-radius: 2px;
-  background-color: var(--selago);
+  background-color: hsl( var(--selago) );
   transition: all 200ms;
   display: flex;
   align-items: center;
@@ -538,26 +555,26 @@ body[data-theme='dark'] .button {
 }
 
 .react-aria-Checkbox[data-hovered] .checkbox {
-  outline-color: var(--deselected-color);
+  outline-color: hsl( var(--deselected-color) );
 }
 
 .react-aria-Checkbox svg {
   width: .7rem;
   height: .7rem;
   fill: none;
-  stroke: var(--checkmark-color);
+  stroke: hsl( var(--checkmark-color) );
   stroke-width: 3px;
   stroke-dasharray: 22px;
   stroke-dashoffset: 66;
   transition: all 200ms;
 }
 .react-aria-Checkbox[data-pressed] .checkbox {
-  outline-color: var(--deselected-color-pressed);
+  outline-color: hsl( var(--deselected-color-pressed) );
 }
 
 .react-aria-Checkbox:where([data-selected], [data-indeterminate]) .checkbox {
-  outline-color: var(--selected-color);
-  background: var(--selected-color);
+  outline-color: hsl( var(--selected-color) );
+  background: hsl( var(--selected-color) );
 }
 
 .react-aria-Checkbox:where([data-selected], [data-indeterminate])[data-pressed] .checkbox {
@@ -570,28 +587,28 @@ body[data-theme='dark'] .button {
 }
 
 .react-aria-Checkbox[data-validation-state=invalid] .checkbox {
-  outline-color: var(--invalid-color);
+  outline-color: hsl( var(--invalid-color) );
 }
 
 .react-aria-Checkbox[data-validation-state=invalid][data-pressed] .checkbox {
-  outline-color: var(--invalid-color-pressed);
+  outline-color: hsl( var(--invalid-color-pressed) );
 }
 
 .react-aria-Checkbox[data-validation-state=invalid]:where([data-selected], [data-indeterminate]) .checkbox {
-  background: var(--invalid-color);
+  background: hsl( var(--invalid-color) );
 }
 
 .react-aria-Checkbox[data-validation-state=invalid]:where([data-selected], [data-indeterminate])[data-pressed] .checkbox {
-  background: var(--invalid-color-pressed);
+  background: hsl( var(--invalid-color-pressed) );
 }
 
 .react-aria-Checkbox[data-indeterminate] svg {
   stroke: none;
-  fill: var(--checkmark-color);
+  fill: hsl( var(--checkmark-color) );
 }
 
 .react-aria-Checkbox[data-focus-visible] .checkbox {
-  box-shadow: 0 0 0 2px var(--spectrum-alias-background-color-default), 0 0 0 4px var(--selected-color);
+  box-shadow: 0 0 0 2px var(--spectrum-alias-background-color-default), 0 0 0 4px hsl( var(--selected-color) );
 }
 
 .react-aria-Checkbox[data-disabled] {

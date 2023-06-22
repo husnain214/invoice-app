@@ -7,15 +7,14 @@
 }
 
 :is(.user-page, .invoice-page) .header {
-  margin-block: 5em;
-  padding-inline: clamp(1em, 3vw, 3em);
+  padding-top: clamp(3em, 7vw, 10em);
 }
 
 .user-page .main-content {
   padding-bottom: 2rem;
-  padding-inline: clamp(1em, 3vw, 3em);
   place-self: center;
   text-align: center;
+  margin-top: min(4vw, 3rem);
   --flow-spacing: 4.125rem;
 }
 
@@ -51,8 +50,6 @@
   }
 
   .user-page .main-content { 
-    padding-inline: 0; 
-    margin-top: min(5vw, 5rem);
     margin-bottom: 3rem;
   }
 }
@@ -64,7 +61,7 @@
 
 .sidebar > *:nth-child(1) {
   grid-area: logo;
-  background-color: var(--cornflower-blue);
+  background-color: hsl( var(--cornflower-blue) );
   border-radius: 0 20px 20px 0;
   overflow: hidden;
   position: relative;
@@ -79,7 +76,7 @@
   position: absolute;
   inset: 0;
   top: 50%;
-  background-color: var(--heliotrope);
+  background-color: hsl( var(--heliotrope) );
   z-index: -1;
   border-radius: 20px 0 0 0;
 }

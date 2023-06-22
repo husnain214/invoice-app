@@ -41,12 +41,12 @@
 
 .invoice-form::-webkit-scrollbar-thumb {
   width: .5rem;
-  background: var(--selago);
+  background: hsl( var(--selago) );
   border-radius: 100vmax;
 }
 
 .invoice-form::-webkit-scrollbar-thumb:active {
-  background-color: var(--heliotrope);
+  background-color: hsl( var(--heliotrope) );
 }
 
 .invoice-form-container[data-visible='true'] {

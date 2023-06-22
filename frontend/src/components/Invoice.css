@@ -4,7 +4,54 @@
   --flow-spacing: 1rem;
   padding: 1.5em 1.3em;
 
-  background-color: var(--clr-neutral-bg);
+  background-color: hsl( var(--clr-neutral-bg) );
+
+  display: grid;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-areas: 'invoice-heading client-name payment-due total status';
+}
+
+@media (width < 45em) {
+  .invoice {
+    row-gap: .5em;
+    justify-items: space-around;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    'invoice-heading client-name'
+    'payment-due status'
+    'total status';
+  }
+
+  .invoice > *:nth-child(1) {
+    margin-bottom: 1em;
+  }
+
+  .invoice > *:nth-child(5) {
+    margin-right: auto;
+  }
+}
+
+.invoice > *:nth-child(1) {
+  grid-area: invoice-heading;
+}
+
+.invoice > *:nth-child(2) {
+  grid-area: payment-due;
+}
+
+.invoice > *:nth-child(3) {
+  grid-area: client-name;
+}
+
+.invoice > *:nth-child(4) {
+  grid-area : total;
+}
+
+.invoice > *:nth-child(5) {
+  grid-area: status;
+  margin-left: auto;
 }
 
 a {
