@@ -6,10 +6,9 @@ import './UserPage.css'
 import SideBar from './SideBar'
 import InvoiceList from './InvoiceList.js'
 import InvoiceDetailsPage from './InvoiceDetailsPage'
-import InvoiceForm from './InvoiceForm'
 
 const UserPage = ({ invoices, toggleTheme, updateFilters }) => {
-  const [invoicFormVisible, setInvoiceFormVisible] = useState(false)
+  const [invoiceFormVisible, setInvoiceFormVisible] = useState(false)
   const [selectedInvoice, setSelectedInvoice] = useState(null)
 
   return (
@@ -23,6 +22,9 @@ const UserPage = ({ invoices, toggleTheme, updateFilters }) => {
               openInvoiceForm={setInvoiceFormVisible} 
               invoices={invoices} 
               updateFilters={updateFilters}
+              invoiceFormVisible={invoiceFormVisible}
+              selectedInvoice={selectedInvoice}
+              setInvoiceFormVisible={setInvoiceFormVisible}
               />
             } />
 
@@ -34,12 +36,6 @@ const UserPage = ({ invoices, toggleTheme, updateFilters }) => {
               />
             } />
           </Routes>
-
-          <InvoiceForm 
-            visibility={invoicFormVisible} 
-            invoiceID={selectedInvoice} 
-            setVisibility={setInvoiceFormVisible} 
-          />
         </div>
       </div>
     </>

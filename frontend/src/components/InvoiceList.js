@@ -1,11 +1,16 @@
 import imageEmpty from '../assets/illustration-empty.svg'
 import Invoice from './Invoice'
 import Header from './Header'
+import InvoiceForm from './InvoiceForm'
 
-const InvoiceList = ({ invoices, openInvoiceForm, updateFilters }) => {
+const InvoiceList = ({ invoices, openInvoiceForm, updateFilters, invoiceFormVisible, selectedInvoice, setInvoiceFormVisible }) => {
   return (
     <>
-      <Header showForm={ openInvoiceForm } invoiceCount = {invoices.length} updateFilters={updateFilters} />
+      <Header 
+        showForm={ openInvoiceForm } 
+        invoiceCount = {invoices.length} 
+        updateFilters={updateFilters} 
+      />
     
       <main className='main-content container flow'>
       {
@@ -34,6 +39,12 @@ const InvoiceList = ({ invoices, openInvoiceForm, updateFilters }) => {
           </>
       }
       </main>
+
+      <InvoiceForm 
+        visibility={invoiceFormVisible} 
+        invoiceID={selectedInvoice} 
+        setVisibility={setInvoiceFormVisible} 
+      />
     </>
   )
 }

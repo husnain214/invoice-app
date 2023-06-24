@@ -60,3 +60,7 @@ body[data-theme='dark'] {
   border-radius: 0 0 8px 8px;
   padding: 3em 2em; 
 } 
+
+footer {
+  padding-block: 1em;
+}
