@@ -238,6 +238,10 @@ select {
   justify-content: flex-start;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
 .align-center {
   align-items: center;
 }
@@ -259,8 +263,15 @@ select {
 }
 
 .container {
-  width: min(45.625rem, 100% - 2rem);
+  --padding-inline: 5rem;
+  width: min(45.625rem, 100% - var(--padding-inline));
   margin-inline: auto;
+}
+
+@media (width < 25em) {
+  .container {
+    --padding-inline: 2rem;
+  }
 }
 
 .flow > * + * {

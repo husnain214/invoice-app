@@ -1,13 +1,17 @@
+import { useState } from 'react'
+
 import imageEmpty from '../assets/illustration-empty.svg'
 import Invoice from './Invoice'
 import Header from './Header'
-import InvoiceForm from './InvoiceForm'
+import InvoiceForm from './NewInvoiceForm'
 
-const InvoiceList = ({ invoices, openInvoiceForm, updateFilters, invoiceFormVisible, selectedInvoice, setInvoiceFormVisible }) => {
+const InvoiceList = ({ invoices, updateFilters }) => {
+  const [invoiceFormVisible, setInvoiceFormVisible] = useState(false)
+
   return (
     <>
       <Header 
-        showForm={ openInvoiceForm } 
+        showForm={ setInvoiceFormVisible } 
         invoiceCount = {invoices.length} 
         updateFilters={updateFilters} 
       />
@@ -42,7 +46,6 @@ const InvoiceList = ({ invoices, openInvoiceForm, updateFilters, invoiceFormVisi
 
       <InvoiceForm 
         visibility={invoiceFormVisible} 
-        invoiceID={selectedInvoice} 
         setVisibility={setInvoiceFormVisible} 
       />
     </>

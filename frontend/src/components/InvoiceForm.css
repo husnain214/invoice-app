@@ -1,17 +1,16 @@
 .invoice-form-container {
   --left-spacing: clamp(1rem, 2vw, 10rem);
+  --padding-right: clamp(2rem, 3vw, 3.5rem);
 
-  position: absolute;
+  position: fixed;
   inset: 0;
-  left: calc(-1 * var(--left-spacing));
+  left: calc( var(--left-spacing) + var(--padding-right) + 2vw );
   background-color: rgba(0, 0, 0, 0.26);
   visibility: hidden;
   z-index: -1;
 }
 
-.scroll-wrapper {
-  --padding-right: clamp(2rem, 3vw, 3.5rem);
- 
+.scroll-wrapper { 
   position: sticky;
   top: 0;
   transform: translateX(-100%);
@@ -27,13 +26,15 @@
 
 @media (width < 45em) {
   .invoice-form-container {
-    position: sticky;
+    /* position: sticky; */
+    left: 0;
   }
 
   .scroll-wrapper {
     border-radius: 0;
     width: 90%;
-    padding-block: 2rem;
+    padding-top: 20vh;
+    padding-bottom: 2rem;
   }
 }
 

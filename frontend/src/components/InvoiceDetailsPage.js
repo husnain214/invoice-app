@@ -1,9 +1,11 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
+import EditInvoiceForm from './EditInvoiceForm'
 import arrowLeft from '../assets/icon-arrow-left.svg'
 import './Invoice.css'
 import './InvoiceDetailsPage.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import DeleteInvoiceDialog from './DeleteInvoiceDialog'
 
 const InvoiceItems = ({ items }) => {
   if(window.innerWidth < 600) {
@@ -55,10 +57,12 @@ const InvoiceItems = ({ items }) => {
   )
 }
 
-const InvoiceDetailsPage = ({ invoices, setInvoice, openInvoiceForm }) => {
+const InvoiceDetailsPage = ({ invoices }) => {
   const { invoiceID } = useParams()
   const [isPageValid, setIsPageValid] = useState(false)
   const navigate = useNavigate()
+  const [invoiceFormVisible, setInvoiceFormVisible] = useState(false)
+  const InvoiceDetailsRef = useRef()
 
   useEffect(() => {
     if(!invoices.length) {  
@@ -73,9 +77,13 @@ const InvoiceDetailsPage = ({ invoices, setInvoice, openInvoiceForm }) => {
   const selectedInvoice = invoices.find( invoice => invoice.id === invoiceID)
   const { id, description, senderAddress, createdAt, paymentDue, clientName, clientAddress, clientEmail, items, total } = selectedInvoice
 
+  const openDeleteDialog = () => {
+    InvoiceDetailsRef.current.openDialog()
+  }
+
   return (
     <>
-      <div className='invoice-page container'>
+      <div className='invoice-page container p-relative'>
         <header className='header flow' style={{ '--flow-spacing': '2rem' }}>
           <nav>
             <Link to='/' className='flex fs-200 text-primary letter-spacing-200 line-height-100 fw-bold align-center'>
@@ -95,12 +103,11 @@ const InvoiceDetailsPage = ({ invoices, setInvoice, openInvoiceForm }) => {
             </div>
 
             <div className='flex align-center justify-sb hidden-mobile'>
-              <button className="button button--edit" onClick={() => {
-                setInvoice(invoiceID)
-                openInvoiceForm(true)
+              <button className='button button--edit' onClick={() => {
+                setInvoiceFormVisible(true)
               }}>Edit</button>
-              <button className="button button--delete">Delete</button>
-              <button className="button button--mark">Mark as Paid</button>
+              <button onClick={openDeleteDialog} className='button button--delete'>Delete</button>
+              <button className='button button--mark'>Mark as Paid</button>
             </div>
           </div>
         </header>
@@ -163,14 +170,21 @@ const InvoiceDetailsPage = ({ invoices, setInvoice, openInvoiceForm }) => {
 
       <footer className='bg-neutral desktop-hidden'>
         <div className='container flex align-center justify-center'>
-          <button className="button button--edit" onClick={() => {
-            setInvoice(invoiceID)
-            openInvoiceForm(true)
+          <button className='button button--edit' onClick={() => {
+            setInvoiceFormVisible(true)
           }}>Edit</button>
-          <button className="button button--delete">Delete</button>
-          <button className="button button--mark">Mark as Paid</button>
+          <button onClick={openDeleteDialog} className='button button--delete'>Delete</button>
+          <button className='button button--mark'>Mark as Paid</button>
         </div>
       </footer>
+
+      <EditInvoiceForm 
+        visibility={invoiceFormVisible} 
+        setVisibility={setInvoiceFormVisible} 
+        invoiceID={invoiceID}
+      />
+
+      <DeleteInvoiceDialog ref={InvoiceDetailsRef} />
     </>
   )
 }

@@ -1,0 +1,5 @@
+dialog {
+  padding: clamp(2.125rem, 5vw, 3.1875rem);
+  border: 0;
+  border-radius: 20px;
+}
