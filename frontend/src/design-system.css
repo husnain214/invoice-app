@@ -344,7 +344,7 @@ body[data-theme='dark'] .button {
   align-items: center;
 
   font-size: var(--fs-200);
-  padding: var(--button-padding, 0.8125rem clamp(1rem, 2vw, 1.5rem));
+  padding: var(--button-padding, 0.8125rem clamp(.8rem, 2vw, 1.5rem));
   
   cursor: pointer;
   border-radius: 100vmax;

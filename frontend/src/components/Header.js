@@ -35,7 +35,7 @@ const Header = ({ showForm, updateFilters, invoiceCount }) => {
             aria-controls='filter-popover'
             aria-expanded={visibility === 'none' ? false : true}
             className='flex text-primary bg-body button'
-            onClick={() => setVisibility( visibility === '' ? 'none' : '')}>
+            onPress={() => setVisibility( visibility === '' ? 'none' : '')}>
             <span>Filter<span className='hidden-mobile'> by status</span> </span>
             <img src={arrowDown} alt='arrow down'/>
           </Button>

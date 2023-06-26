@@ -12,10 +12,10 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
 
   return (
     <div className='invoice-form-container' data-visible={visibility}>
-      <div className='scroll-wrapper bg-neutral'>
-        <form className='invoice-form flow'>
-          <h1 className='letter-spacing-200 fs-200 text-primary line-height-100'>Edit <span className='text-cornflower-blue'>#</span>{invoiceID}</h1>
+      <div className='scroll-wrapper bg-neutral flow'>
+        <h1 className='fs-300'>Edit <span className='text-cornflower-blue'>#</span>{invoiceID}</h1>
 
+        <form className='invoice-form flow'>
           <section aria-labelledby='bill-from' className='form-section flow'>
             <h4 className='text-cornflower-blue fs-200' id='bill-from'>Bill From</h4>
 
