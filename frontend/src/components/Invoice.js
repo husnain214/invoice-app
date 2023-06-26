@@ -10,7 +10,7 @@ const Invoice = ({ invoice }) => {
     <h2 className='letter-spacing-200 fs-200 text-primary line-height-100'><span className='text-cornflower-blue'>#</span>{id}</h2>
     <p className='text-secondary'>{paymentDue}</p>
     <p className='text-secondary'>{clientName}</p>
-    <p className='fs-200 fw-bold line-height-400 text-primary letter-spacing-200'>£ {total}</p>
+    <p className='fs-300 fw-bold line-height-400 text-primary letter-spacing-200'>£ {total}</p>
 
     <div className='flex-group flex justify-sb align-center'>
       <div className={`invoice-status invoice-status--${status} flex align-center`}>

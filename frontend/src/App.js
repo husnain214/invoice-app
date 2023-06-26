@@ -16,7 +16,7 @@ const App = () => {
       : invoices.filter(invoice => filtersList.includes(invoice.status))
     )
     
-    document.body.setAttribute('data-theme', 'light')
+    document.body.setAttribute('data-theme', 'dark')
   }, [filtersList, invoices])
 
   const [filteredInvoices, setFilteredInvoices] = useState([])
