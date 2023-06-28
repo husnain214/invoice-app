@@ -4,7 +4,7 @@ const { isEmail } = require('validator')
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
@@ -12,38 +12,40 @@ const userSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: isEmail,
-      message: 'Please provide a valid email'
-    }
+      message: 'Please provide a valid email',
+    },
   },
   theme: {
     type: Boolean,
     required: true,
-    default: 0
+    default: 0,
   },
   profile_pic: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   passwordHash: {
     type: String,
     unique: true,
-    required: true
+    required: true,
   },
-  invoices: {
-    ref: 'Invoice',
-    type: mongoose.SchemaTypes.ObjectId
-  }
+  invoices: [
+    {
+      ref: 'Invoice',
+      type: mongoose.Schema.Types.ObjectId,
+    },
+  ],
 })
 
-userSchema.set('toJSON', () => {
+userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
     // the passwordHash should not be revealed
     delete returnedObject.passwordHash
-  }
+  },
 })
 
 module.exports = mongoose.model('User', userSchema)

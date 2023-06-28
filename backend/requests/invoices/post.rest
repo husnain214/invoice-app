@@ -1,0 +1,35 @@
+
+POST http://localhost:3003/api/invoices
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbW9AZGVtby5jb20iLCJpZCI6IjY0OWM2YzBkZWE3YTllNTg5MDhlMDIxYiIsImlhdCI6MTY4Nzk3Mjg4OH0.HusFmbM4Dh1BCEt-JWqteJncNoHoYyhSXxPq5X2gsFI
+
+{
+  "createdAt": "2021-08-18",
+  "paymentDue": "2021-08-19",
+  "description": "Re-branding",
+  "paymentTerms": 1,
+  "clientName": "Jensen Huang",
+  "clientEmail": "jensenh@mail.com",
+  "status": "paid",
+  "senderAddress": {
+    "street": "19 Union Terrace",
+    "city": "London",
+    "postCode": "E1 3EZ",
+    "country": "United Kingdom"
+  },
+  "clientAddress": {
+    "street": "106 Kendell Street",
+    "city": "Sharrington",
+    "postCode": "NR24 5WQ",
+    "country": "United Kingdom"
+  },
+  "items": [
+    {
+      "name": "Brand Guidelines",
+      "quantity": 1,
+      "price": 1800.90,
+      "total": 1800.90
+    }
+  ],
+  "total": 1800.90
+}

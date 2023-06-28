@@ -3,25 +3,25 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
 userRouter.post('/', async (request, response) => {
-  const { email, name, password } = request.body
+  const { email, name, password, profile_pic } = request.body
 
-  if(!email || !password) {
+  if (!email || !password || !profile_pic) {
     return response.status(400).json({
-      error: 'email and password are required'
+      error: 'email, password, profile picture are required',
     })
   }
 
   const existingUser = await User.findOne({ email })
 
-  if(existingUser) {
+  if (existingUser) {
     return response.status(400).json({
-      error: 'email must be unique'
+      error: 'email must be unique',
     })
   }
 
-  if(password.length < 3) {
+  if (password.length < 3) {
     return response.status(400).json({
-      error: 'password must be atleast 3 characters'
+      error: 'password must be atleast 3 characters',
     })
   }
 
@@ -31,7 +31,8 @@ userRouter.post('/', async (request, response) => {
   const user = new User({
     name,
     email,
-    passwordHash
+    profile_pic,
+    passwordHash,
   })
 
   const savedUser = await user.save()
