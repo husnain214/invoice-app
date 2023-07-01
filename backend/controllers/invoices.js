@@ -20,7 +20,7 @@ invoiceRouter.post('/', userExtractor, async (request, response) => {
   ]
 
   const missingFields = invoiceFields.filter(
-    (field) => body[field] !== undefined
+    (field) => body[field] === undefined
   )
 
   if (missingFields.length > 0) {
