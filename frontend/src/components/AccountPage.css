@@ -1,0 +1,45 @@
+.account-page {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.account-page header {
+  text-align: center;
+}
+
+.account-page button[type='submit'] {
+  background-color: hsl( var(--cornflower-blue) );
+  color: hsl( var(--white) );
+  justify-content: center;
+}
+
+.account-page button[type='button'] {
+  border: 1px solid hsl( var(--cornflower-blue) );
+  color: hsl( var(--cornflower-blue) );
+  justify-content: center;
+}
+
+.account-page .button:is(:hover, :focus-visible) {
+  opacity: .7;
+}
+
+.span-decor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.span-decor span {
+  padding: .5em;
+}
+
+.span-decor::before, .span-decor::after {
+  content: '';
+  height: 1px;
+  width: 100%;
+  background-color: hsl( var(--cornflower-blue) );
+}

@@ -54,6 +54,14 @@
   }
 }
 
+body[data-theme='dark'] .sidebar {
+  background-color: hsl( var(--mirage) );
+}
+
+body[data-theme='light'] .sidebar {
+  background-color: hsl( 230 20% 27% );
+}
+
 .sidebar > * > * {
   margin-inline: auto;
   padding-block: clamp(1em, 3vw, 2em);

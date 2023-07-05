@@ -1,6 +1,6 @@
 import { useTextField } from '../hooks'
 
-const FormElement = ({ inputName, inputLabel }) => {
+const FormElement = ({ inputName, inputLabel, type='text', placeholder='' }) => {
   const formInput = useTextField(inputName)
 
   return (
@@ -10,10 +10,11 @@ const FormElement = ({ inputName, inputLabel }) => {
       <input 
         name={formInput.name}
         id={formInput.name}
-        type='text' 
+        type={type}
         className='input' 
         value={formInput.value}
         onChange={formInput.onChange}
+        placeholder={placeholder}
       />
     </div>
   )

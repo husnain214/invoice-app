@@ -80,7 +80,7 @@ body[data-theme="dark"] {
   --clr-primary: var(--white);
   --clr-secondary: var(--selago);
   --text-accent: var(--selago);
-  --clr-body: var(--vulcan);
+  --clr-body: 233 30% 11%;
 
   --clr-neutral-bg: var(--mirage);
 

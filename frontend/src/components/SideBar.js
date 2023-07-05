@@ -6,7 +6,7 @@ import imageAvatar from '../assets/image-avatar.jpg'
 
 const SideBar = ({ toggleTheme }) => {
   return (
-    <aside className='sidebar bg-oxford-blue'>
+    <aside className='sidebar'>
       <Link to='/'><img src={logo} alt='logo'/></Link>
 
       <button onClick={toggleTheme}><img src={iconSun} alt='sun'/></button>
