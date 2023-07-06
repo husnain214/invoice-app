@@ -1,10 +1,14 @@
-.account-page {
+#root {
   display: grid;
-  gap: 1rem;
-  justify-items: center;
   align-content: center;
-  align-items: center;
-  min-height: 100vh;
+}
+
+.account-page {
+  --container-width: 35em;
+}
+
+.account-page--form > .grid {
+  grid-auto-flow: column;
 }
 
 .account-page header {
@@ -17,7 +21,7 @@
   justify-content: center;
 }
 
-.account-page button[type='button'] {
+.account-page a.button {
   border: 1px solid hsl( var(--cornflower-blue) );
   color: hsl( var(--cornflower-blue) );
   justify-content: center;
@@ -41,5 +45,5 @@
   content: '';
   height: 1px;
   width: 100%;
-  background-color: hsl( var(--cornflower-blue) );
+  background-color: hsl( var(--cornflower-blue) / .5 );
 }

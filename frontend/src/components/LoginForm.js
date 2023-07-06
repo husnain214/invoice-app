@@ -1,4 +1,5 @@
 import FormElement from './FormElement'
+import { Link } from 'react-router-dom'
 
 const LoginForm = () => {
   return (
@@ -9,7 +10,7 @@ const LoginForm = () => {
         <p className='fs-200'>Login to your account</p>
       </header>
       <main className='grid'>
-        <form action='' className='account-page--form grid'>
+        <form action='' method='POST' className='account-page--form grid'>
           <FormElement 
             type='email' 
             name='email' 
@@ -28,7 +29,7 @@ const LoginForm = () => {
           <div className='span-decor'>
             <span>or</span>
           </div>
-          <button type='button' className='button'>Signup now</button>
+          <Link to='/create-account' className='button'>Signup now</Link>
         </form>
       </main>
     </>

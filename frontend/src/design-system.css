@@ -264,7 +264,8 @@ select {
 
 .container {
   --padding-inline: 5rem;
-  width: min(45.625rem, 100% - var(--padding-inline));
+  --container-width: 45.625rem;
+  width: min(var(--container-width), 100% - var(--padding-inline));
   margin-inline: auto;
 }
 

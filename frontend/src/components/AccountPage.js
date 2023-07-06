@@ -8,7 +8,7 @@ const AccountPage = () => {
   document.body.setAttribute('data-theme', 'light')
 
   return (
-    <div className='account-page grid'>
+    <div className='account-page container grid'>
       <Routes>
         <Route path='/login' element={<LoginForm />} />
         <Route path='/create-account' element={<SignupForm />} />
