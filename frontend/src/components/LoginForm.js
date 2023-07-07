@@ -20,8 +20,8 @@ const LoginForm = () => {
 
           <FormElement 
             type='password' 
-            name='password' 
-            inputLabel={'password'} 
+            name='assword' 
+            inputLabel={'Password'} 
             placeholder={'**********'}
           />
 

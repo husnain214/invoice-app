@@ -10,7 +10,7 @@ const AccountPage = () => {
   return (
     <div className='account-page container grid'>
       <Routes>
-        <Route path='/login' element={<LoginForm />} />
+        <Route path='/' element={<LoginForm />} />
         <Route path='/create-account' element={<SignupForm />} />
       </Routes>
     </div>

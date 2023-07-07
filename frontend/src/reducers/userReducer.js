@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import loginService from '../services/loginService'
+import userService from '../services/userService'
 import invoiceService from '../services/invoiceService'
 
 const userSlice = createSlice({
@@ -7,7 +8,7 @@ const userSlice = createSlice({
   initialState: null,
   reducers: {
     fetchUser(state, action) {
-      const loggedUserJSON = window.localStorage.getItem('loggedinvoiceappUser')
+      const loggedUserJSON = window.localStorage.getItem('loggedInvoiceAppUser')
 
       if (loggedUserJSON) {
         const user = JSON.parse(loggedUserJSON)
@@ -37,17 +38,32 @@ export const intializeUser = () => {
 
 export const addUser = user => {
   return async dispatch => {
-    const loggedUser = await loginService.login(user)
+    try {
+      await userService.createAccount(user)
+      alert('success')
+    } catch (error) {
+      alert(error)
+    }
+  }
+}
 
-    dispatch(setUser(loggedUser))
-    invoiceService.setConfig(loggedUser.token)
-    window.localStorage.setItem('loggedinvoiceappUser', JSON.stringify(loggedUser))
+export const userLogin = user => {
+  return async dispatch => {
+    try {
+      const loggedUser = await loginService.login(user)
+
+      dispatch(setUser(loggedUser))
+      invoiceService.setConfig(loggedUser.token)
+      window.localStorage.setItem('loggedInvoiceAppUser', JSON.stringify(loggedUser))
+    } catch(error) {
+      alert(error)
+    }
   }
 }
 
 export const logout = () => {
   return async dispatch => {
-    window.localStorage.removeItem('loggedinvoiceappUser')
+    window.localStorage.removeItem('loggedInvoiceAppUser')
     dispatch(removeUser(null))
   }
 }

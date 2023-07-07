@@ -1,18 +1,20 @@
 import FormElement from './FormElement'
 import { Link } from 'react-router-dom'
 import { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../reducers/userReducer'
 
 const SignupForm = () => {
   const ref = useRef()
-  const handleSubmit = e => {
-    e.preventDefault()
+  const dispatch = useDispatch()
 
+  const handleSubmit = event => {
+    event.preventDefault()
     const formData = new FormData(ref.current)
-    
-    for(let [key, value] of formData.entries()) {
-      console.log(key, value)
-    }
+    dispatch(addUser(formData))
+    event.target.querySelectorAll('input').forEach(input => input.value = '')
   }
+
   return (
     <>
       <header className='flow'>
@@ -63,7 +65,7 @@ const SignupForm = () => {
           <div className='span-decor'>
             <span>or</span>
           </div>
-          <Link to='/login' className='button'>Login</Link>
+          <Link to='/' className='button'>Login</Link>
         </form>
       </main>
     </>
