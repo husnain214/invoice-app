@@ -1,7 +1,24 @@
+import { useDispatch, useSelector } from 'react-redux'
 import FormElement from './FormElement'
 import { Link } from 'react-router-dom'
+import { userLogin } from '../reducers/userReducer'
+import { useRef } from 'react'
 
 const LoginForm = () => {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+  const ref = useRef()
+  
+  const handleSubmit = event => {
+    event.preventDefault()
+
+    const formData = new FormData(ref.current)
+
+    for(const [key, value] of formData.entries()) console.log(key, value)
+
+    dispatch(userLogin(formData))
+    event.target.querySelectorAll('input').forEach(input => input.value = '')
+  }
   return (
     <>
       <header className='flow'>
@@ -10,7 +27,7 @@ const LoginForm = () => {
         <p className='fs-200'>Login to your account</p>
       </header>
       <main className='grid'>
-        <form action='' method='POST' className='account-page--form grid'>
+        <form action='' method='POST' onSubmit={handleSubmit} className='account-page--form grid' ref={ref}>
           <FormElement 
             type='email' 
             name='email' 

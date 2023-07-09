@@ -47,10 +47,10 @@ export const addUser = user => {
   }
 }
 
-export const userLogin = user => {
+export const userLogin = credentials => {
   return async dispatch => {
     try {
-      const loggedUser = await loginService.login(user)
+      const loggedUser = await loginService.login(credentials)
 
       dispatch(setUser(loggedUser))
       invoiceService.setConfig(loggedUser.token)

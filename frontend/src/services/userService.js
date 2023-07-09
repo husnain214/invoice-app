@@ -2,11 +2,15 @@ import axios from 'axios'
 const baseURL = '/api/users'
 
 const createAccount = async credentials => {
-  console.log(credentials)
-  const response = await axios.post(baseURL, { 
-    data: 'You are sexy' 
-  }, {
-    headers: { 'Content-Type': 'multipart/form-data' }
+  let oldFilename = credentials.get('profile-picture').name
+  const newFilename = credentials.get('name') + '-image.' + oldFilename.split('.').pop()
+  
+  credentials.set('profile-picture', credentials.get('profile-picture'), newFilename)
+
+  const response = await axios.post(baseURL, credentials, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    }
   })
   return response.data
 }

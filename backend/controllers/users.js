@@ -1,44 +1,61 @@
 const userRouter = require('express').Router()
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const multer = require('multer')
+const path = require('path')
+const fs = require('fs')
 
-userRouter.post('/', async (request, response) => {
-  console.log(request.body)
-  // const { email, name, password, profile_pic } = request.body
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './images')
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname).split('.').at(0) + '-' + file.originalname)
+  }
+})
 
-  // if (!email || !password || !profile_pic) {
-  //   return response.status(400).json({
-  //     error: 'email, password, profile picture are required',
-  //   })
-  // }
+const upload = multer({ storage })
 
-  // const existingUser = await User.findOne({ email })
+userRouter.post('/', upload.single('profile-picture'), async (request, response) => {
+  const { email, name, password } = request.body
+  const profile_pic = request.file.path
 
-  // if (existingUser) {
-  //   return response.status(400).json({
-  //     error: 'email must be unique',
-  //   })
-  // }
+  if (!email || !password || !request.file) {
+    fs.unlink(profile_pic)
+    return response.status(400).json({
+      error: 'email, password, profile picture are required',
+    })
+  }
 
-  // if (password.length < 3) {
-  //   return response.status(400).json({
-  //     error: 'password must be atleast 3 characters',
-  //   })
-  // }
+  const existingUser = await User.findOne({ email })
 
-  // const saltRounds = 10
-  // const passwordHash = await bcrypt.hash(password, saltRounds)
+  if (existingUser) {
+    fs.unlink(profile_pic)
+    return response.status(400).json({
+      error: 'email must be unique',
+    })
+  }
 
-  // const user = new User({
-  //   name,
-  //   email,
-  //   profile_pic,
-  //   passwordHash,
-  // })
+  if (password.length < 3) {
+    fs.unlink(profile_pic)
+    return response.status(400).json({
+      error: 'password must be atleast 3 characters',
+    })
+  }
 
-  // const savedUser = await user.save()
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(password, saltRounds)
 
-  // response.status(201).send(savedUser)
+  const user = new User({
+    name,
+    email,
+    profile_pic,
+    passwordHash,
+  })
+
+  const savedUser = await user.save()
+
+  response.status(201).send(savedUser)
 })
 
 userRouter.get('/', async (request, response) => {
