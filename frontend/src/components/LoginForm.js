@@ -14,10 +14,9 @@ const LoginForm = () => {
 
     const formData = new FormData(ref.current)
 
-    for(const [key, value] of formData.entries()) console.log(key, value)
-
     dispatch(userLogin(formData))
     event.target.querySelectorAll('input').forEach(input => input.value = '')
+    console.log(user)
   }
   return (
     <>
@@ -30,14 +29,14 @@ const LoginForm = () => {
         <form action='' method='POST' onSubmit={handleSubmit} className='account-page--form grid' ref={ref}>
           <FormElement 
             type='email' 
-            name='email' 
+            inputName='email' 
             inputLabel={'Email Address'} 
             placeholder={'alex@email.com'}
           />
 
           <FormElement 
             type='password' 
-            name='assword' 
+            inputName='password' 
             inputLabel={'Password'} 
             placeholder={'**********'}
           />

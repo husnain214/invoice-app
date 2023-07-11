@@ -6,9 +6,13 @@ import data from '../data.json'
 import SideBar from './SideBar'
 import InvoiceList from './InvoiceList.js'
 import InvoiceDetailsPage from './InvoiceDetailsPage'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeTheme } from '../reducers/userReducer'
 
 const UserPage = () => {
   const [invoices, setInvoices] = useState([])
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
 
   const [filtersList, setFiltersList] = useState([])
 
@@ -20,8 +24,8 @@ const UserPage = () => {
       : invoices.filter(invoice => filtersList.includes(invoice.status))
     )
     
-    document.body.setAttribute('data-theme', 'dark')
-  }, [filtersList, invoices])
+    document.body.setAttribute('data-theme', user.theme ? 'dark' : 'light')
+  }, [filtersList, invoices, user.theme])
 
   const [filteredInvoices, setFilteredInvoices] = useState([])
 
@@ -36,10 +40,7 @@ const UserPage = () => {
   } 
 
   const toggleTheme = () => {
-    const theme = document.body.getAttribute('data-theme') === 'light'
-                  ? 'dark'
-                  : 'light'
-    document.body.setAttribute('data-theme', theme)
+    dispatch(changeTheme(user))
   }
 
   return (

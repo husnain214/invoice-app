@@ -63,4 +63,14 @@ userRouter.get('/', async (request, response) => {
   response.json(users)
 })
 
+userRouter.put('/:id', async (request, response) => {
+  const id = request.params.id
+  const user = await User.findById(id)
+
+  user['theme'] = request.body.theme
+
+  await User.findByIdAndUpdate(id, user, { updated: true })
+  response.status(200).send(request.body)
+})
+
 module.exports = userRouter

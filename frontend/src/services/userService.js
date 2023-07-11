@@ -9,10 +9,16 @@ const createAccount = async credentials => {
 
   const response = await axios.post(baseURL, credentials, {
     headers: {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
     }
   })
   return response.data
 }
 
-export default { createAccount }
+const updateAccount = async updatedUser => {
+  console.log(updatedUser)
+  const response = await axios.put(`${baseURL}/${updatedUser.id}`, updatedUser)
+  return response.data
+}
+
+export default { createAccount, updateAccount }

@@ -47,11 +47,25 @@ export const addUser = user => {
   }
 }
 
+export const changeTheme = user => {
+  return async dispatch => {
+    user = { ...user, theme: user.theme ? 0 : 1 }
+
+    try {
+      const updatedUser = await userService.updateAccount(user)
+      window.localStorage.setItem('loggedInvoiceAppUser', JSON.stringify(updatedUser))
+      dispatch(setUser(updatedUser))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 export const userLogin = credentials => {
   return async dispatch => {
     try {
       const loggedUser = await loginService.login(credentials)
-
+      console.log(loggedUser)
       dispatch(setUser(loggedUser))
       invoiceService.setConfig(loggedUser.token)
       window.localStorage.setItem('loggedInvoiceAppUser', JSON.stringify(loggedUser))
