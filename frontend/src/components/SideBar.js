@@ -6,9 +6,7 @@ import { useSelector } from 'react-redux'
 
 const SideBar = ({ toggleTheme }) => {
   const user = useSelector(state => state.user)
-
-  console.log(`data:image/jpeg;base64, ${user.profile_pic}`)
-  
+    
   return (
     <aside className='sidebar'>
       <Link to='/'><img src={logo} alt='logo'/></Link>

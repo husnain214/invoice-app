@@ -16,7 +16,6 @@ const createAccount = async credentials => {
 }
 
 const updateAccount = async updatedUser => {
-  console.log(updatedUser)
   const response = await axios.put(`${baseURL}/${updatedUser.id}`, updatedUser)
   return response.data
 }

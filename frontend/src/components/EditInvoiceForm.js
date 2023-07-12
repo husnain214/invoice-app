@@ -3,13 +3,10 @@ import { useState } from 'react'
 import AriaDatePicker from './AriaDatePicker'
 import AriaSelectMenu from './AriaSelectMenu'
 import FormElement from './FormElement'
-import ItemsRow from './ItemsRow'
 
 import './InvoiceForm.css'
 
 const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
-  const [rows, setRows] = useState([<ItemsRow />])
-
   return (
     <div className='invoice-form-container' data-visible={visibility}>
       <div className='scroll-wrapper bg-neutral flow'>
@@ -64,10 +61,9 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
               </thead>
 
               <tbody>
-                {rows}
               </tbody>
             </table>
-            <button className='button button--add' type='button' onClick={() => setRows([...rows, <ItemsRow />])}>Add New Item</button>
+            <button className='button button--add' type='button' onClick={() => {}}>Add New Item</button>
           </section>
           <div className='flex justify-sb align-center'>
             <button type='button' onClick={() => setVisibility('false')} className='button button--discard'>Discard</button>

@@ -16,7 +16,6 @@ const LoginForm = () => {
 
     dispatch(userLogin(formData))
     event.target.querySelectorAll('input').forEach(input => input.value = '')
-    console.log(user)
   }
   return (
     <>

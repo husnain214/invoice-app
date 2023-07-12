@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const loginRouter = require('express').Router()
 const User = require('../models/user')
-const fs = require('fs')
 
 loginRouter.post('/', async (request, response) => {
   const { email, password } = request.body
@@ -17,10 +16,6 @@ loginRouter.post('/', async (request, response) => {
     })
   }
 
-  const profilePicPath = user.profile_pic
-
-  let fileData = fs.readFileSync(profilePicPath)
-
   const userForToken = {
     email: email,
     id: user._id,
@@ -34,7 +29,7 @@ loginRouter.post('/', async (request, response) => {
     email: user.email,
     name: user.name,
     theme: user.theme,
-    profile_pic: fileData ? fileData.toString('base64') : null
+    profile_pic: user.profile_pic
   })
 })
 

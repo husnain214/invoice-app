@@ -18,10 +18,11 @@ const upload = multer({ storage })
 
 userRouter.post('/', upload.single('profile-picture'), async (request, response) => {
   const { email, name, password } = request.body
-  const profile_pic = request.file.path
+  const profilePicPath = request.file.path
+  let fileData = fs.readFileSync(profilePicPath)
 
   if (!email || !password || !request.file) {
-    fs.unlink(profile_pic)
+    fs.unlink(profilePicPath)
     return response.status(400).json({
       error: 'email, password, profile picture are required',
     })
@@ -30,14 +31,14 @@ userRouter.post('/', upload.single('profile-picture'), async (request, response)
   const existingUser = await User.findOne({ email })
 
   if (existingUser) {
-    fs.unlink(profile_pic)
+    fs.unlink(profilePicPath)
     return response.status(400).json({
       error: 'email must be unique',
     })
   }
 
   if (password.length < 3) {
-    fs.unlink(profile_pic)
+    fs.unlink(profilePicPath)
     return response.status(400).json({
       error: 'password must be atleast 3 characters',
     })
@@ -49,7 +50,7 @@ userRouter.post('/', upload.single('profile-picture'), async (request, response)
   const user = new User({
     name,
     email,
-    profile_pic,
+    profile_pic: fileData ? fileData.toString('base64') : null,
     passwordHash,
   })
 
@@ -70,7 +71,7 @@ userRouter.put('/:id', async (request, response) => {
   user['theme'] = request.body.theme
 
   await User.findByIdAndUpdate(id, user, { updated: true })
-  response.status(200).send(request.body)
+  response.json(user)
 })
 
 module.exports = userRouter

@@ -1,12 +1,11 @@
 import { CalendarCell, CalendarGrid, Heading, Calendar, Dialog, DateInput, DateSegment, Group, DatePicker, Button, Label, Popover } from 'react-aria-components'
-
 import arrowLeft from '../assets/icon-arrow-left.svg'
 import arrowRight from '../assets/icon-arrow-right.svg'
 import iconCalendar from '../assets/icon-calendar.svg'
 
-const AriaDatePicker = () => {
+const AriaDatePicker = ({ date, setDate }) => {
   return (
-    <DatePicker className='form-element'>
+    <DatePicker value={date} onChange={setDate} className='form-element'>
       <Label className='label'>Date</Label>
       <Group className='flex input'>
         <DateInput className='flex'>
