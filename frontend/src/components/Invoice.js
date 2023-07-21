@@ -7,8 +7,8 @@ const Invoice = ({ invoice }) => {
 
   return (
     <Link to={`/invoices/${id}`} className='invoice'>
-    <h2 className='letter-spacing-200 fs-200 text-primary line-height-100'><span className='text-cornflower-blue'>#</span>{id}</h2>
-    <p className='text-secondary'>{paymentDue}</p>
+    <h2 className='letter-spacing-200 fs-200 text-primary line-height-100'><span className='text-cornflower-blue'>#</span>{id.slice(0, 6).toUpperCase()}</h2>
+    <p className='text-secondary'>{paymentDue.slice(0, 10)}</p>
     <p className='text-secondary'>{clientName}</p>
     <p className='fs-300 fw-bold line-height-400 text-primary letter-spacing-200'>£ {total}</p>
 

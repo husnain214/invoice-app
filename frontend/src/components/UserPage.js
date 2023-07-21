@@ -1,23 +1,23 @@
 import { Route, Routes } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './UserPage.css'
-import data from '../data.json'
 
 import SideBar from './SideBar'
 import InvoiceList from './InvoiceList.js'
 import InvoiceDetailsPage from './InvoiceDetailsPage'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeTheme } from '../reducers/userReducer'
+import { initializeInvoices } from '../reducers/invoiceReducer'
 
 const UserPage = () => {
-  const [invoices, setInvoices] = useState([])
+  const invoices = useSelector(state => state.invoice)
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   const [filtersList, setFiltersList] = useState([])
 
   useEffect(() => {
-    setInvoices(data)
+    dispatch(initializeInvoices())
     setFilteredInvoices(
       filtersList.length === 0 
       ? invoices

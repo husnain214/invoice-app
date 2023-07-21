@@ -8,11 +8,11 @@
     "globalTeardown": "./tests/teardown.js"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production node --inspect index.js",
-    "dev": "cross-env NODE_ENV=development nodemon --inspect index.js",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit --detectOpenHandles",
+    "start": "set NODE_ENV=production& node --inspect index.js",
+    "dev": "set NODE_ENV=development& nodemon --inspect index.js",
+    "test": "set NODE_ENV=test& jest --verbose --runInBand --forceExit --detectOpenHandles",
     "lint": "eslint .",
-    "start:test": "cross-env NODE_ENV=test node index.js",
+    "start:test": "set NODE_ENV=test& node index.js",
     "build:ui": "rm -rf build && cd ../frontend/ && npm run build && cp -r build ../backend",
     "deploy": "fly deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
@@ -22,7 +22,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cross-env": "^7.0.3",
+    "@flydotio/dockerfile": "^0.3.3",
     "eslint": "^8.36.0",
     "jest": "^29.5.0",
     "nodemon": "^2.0.21",

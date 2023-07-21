@@ -5,7 +5,7 @@ import Invoice from './Invoice'
 import Header from './Header'
 import InvoiceForm from './NewInvoiceForm'
 
-const InvoiceList = ({ invoices, updateFilters }) => {
+const InvoiceList = ({ invoices, updateFilters }) => {  
   const [invoiceFormVisible, setInvoiceFormVisible] = useState(false)
 
   return (

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.62d0a21a.css",
+    "main.js": "/static/js/main.123d25e5.js",
+    "static/media/illustration-empty.svg": "/static/media/illustration-empty.e3122ec28052ac246263daf21c5e9764.svg",
+    "static/media/icon-sun.svg": "/static/media/icon-sun.f3da52d13a35ad8bc751df2e85093f98.svg",
+    "index.html": "/index.html",
+    "static/media/icon-calendar.svg": "/static/media/icon-calendar.71c99ab5db94f8cbb7b70ce40afddfb5.svg",
+    "static/media/icon-delete.svg": "/static/media/icon-delete.55a4f6bdb58d753dfd4d9a42f42e8e53.svg",
+    "static/media/logo.svg": "/static/media/logo.e8c9e71e5f292af8e66b49e99439f7b7.svg",
+    "static/media/icon-plus.svg": "/static/media/icon-plus.278c048a38de266d0e5bdbb8bcaaf395.svg",
+    "static/media/icon-arrow-left.svg": "/static/media/icon-arrow-left.e9bb76376b884042fecf1abba1419934.svg",
+    "static/media/icon-arrow-down.svg": "/static/media/icon-arrow-down.a6ed7bfffecda935c666fda2939c385c.svg",
+    "static/media/icon-arrow-right.svg": "/static/media/icon-arrow-right.9e19be64001504a17c146eb378c556a2.svg",
+    "main.62d0a21a.css.map": "/static/css/main.62d0a21a.css.map",
+    "main.123d25e5.js.map": "/static/js/main.123d25e5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.62d0a21a.css",
+    "static/js/main.123d25e5.js"
+  ]
+}

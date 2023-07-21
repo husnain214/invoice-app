@@ -16,7 +16,7 @@ const create = async invoice => {
 }
 
 const getAll = async () => {
-  const response = await axios.get(baseUrl)
+  const response = await axios.get(baseUrl, config)
   return response.data
 }
 

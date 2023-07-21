@@ -14,6 +14,8 @@ const userSlice = createSlice({
         const user = JSON.parse(loggedUserJSON)
         invoiceService.setConfig(user.token)
 
+        console.log(user)
+
         return user
       }
     },

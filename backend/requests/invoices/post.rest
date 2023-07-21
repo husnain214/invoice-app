@@ -1,7 +1,7 @@
 
 POST http://localhost:3003/api/invoices
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbW9AZGVtby5jb20iLCJpZCI6IjY0OWM2YzBkZWE3YTllNTg5MDhlMDIxYiIsImlhdCI6MTY4Nzk3Mjg4OH0.HusFmbM4Dh1BCEt-JWqteJncNoHoYyhSXxPq5X2gsFI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbW9AZGVtby5jb20iLCJpZCI6IjY0YWU1OTkyOTJiZGI5MTNhYjUwZDNiNiIsImlhdCI6MTY4OTk0ODYxM30.zyHh2_tQpk95-rHwrSWJ-q8czKT84f8Ix1SK9LAxOBo
 
 {
   "createdAt": "2021-08-18",

@@ -24,9 +24,10 @@ const { createInvoice, deleteInvoice, updateInvoice, setInvoices} = invoiceSlice
 
 export default invoiceSlice.reducer
 
-export const intializeInvoices = () => {
-  return dispatch => {
-    dispatch(setInvoices())
+export const initializeInvoices = () => {
+  return async dispatch => {
+    const invoices = await invoiceService.getAll()
+    dispatch(setInvoices(invoices))
   }
 }
 
