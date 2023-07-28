@@ -14,10 +14,10 @@ const AriaSelectMenu = ({ terms, setTerms }) => {
       </Button>
       <Popover>
         <ListBox>
-          <Item id={'Net 1 Days'}>Net 1 Days</Item>
-          <Item id={'Net 7 Days'}>Net 7 Days</Item>
-          <Item id={'Net 14 Days'}>Net 14 Days</Item>
-          <Item id={'Net 30 Days'}>Net 30 Days</Item>
+          <Item id={1}>Net 1 Days</Item>
+          <Item id={7}>Net 7 Days</Item>
+          <Item id={14}>Net 14 Days</Item>
+          <Item id={30}>Net 30 Days</Item>
         </ListBox>
       </Popover>
     </Select>

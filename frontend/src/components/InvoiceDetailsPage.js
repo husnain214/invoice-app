@@ -115,7 +115,7 @@ const InvoiceDetailsPage = ({ invoices }) => {
         <main className='invoice-details grid bg-neutral' style={{ '--gap': '3rem' }}>
           <div className='flex align-center justify-sb'>
             <div className='flow'>
-              <h2 className='letter-spacing-200 text-primary fs-200 line-height-100'><span className='text-cornflower-blue'>#</span>{id}</h2>
+              <h2 className='letter-spacing-200 text-primary fs-200 line-height-100'><span className='text-cornflower-blue'>#</span>{id.slice(0, 6).toUpperCase()}</h2>
               <p className='text-secondary'>{description}</p>
             </div>
 
@@ -132,11 +132,11 @@ const InvoiceDetailsPage = ({ invoices }) => {
               <div className='flow'>
                 <div className='flow'>
                   <p className='text-secondary'>Invoice Date</p>
-                  <p className='fw-bold fs-200 text-primary'>{createdAt}</p>
+                  <p className='fw-bold fs-200 text-primary'>{createdAt.slice(0, 10)}</p>
                 </div>
                 <div className='flow'>
                   <p className='text-secondary'>Payment Due</p>
-                  <p className='fw-bold fs-200 text-primary'>{paymentDue}</p>
+                  <p className='fw-bold fs-200 text-primary'>{paymentDue.slice(0, 10)}</p>
                 </div>
               </div>
             </div>

@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { today, getLocalTimeZone } from '@internationalized/date'
 import { addInvoice } from '../reducers/invoiceReducer'
+import Item from './Item'
 
 import AriaDatePicker from './AriaDatePicker'
 import AriaSelectMenu from './AriaSelectMenu'
 import FormElement from './FormElement'
-import iconDelete from '../assets/icon-delete.svg'
 
 import './InvoiceForm.css'
 
@@ -20,11 +20,43 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
+    const currDate = new Date()
+    currDate.setDate(currDate.getDate() + terms)
+    
+    const invoice = {
+      createdAt: date.toString(),
+      paymentTerms: terms,
+      paymentDue: currDate.toISOString().replace(/T.*/,'').split('-').join('-'),
+      description: formData.get('project-description'),
+      clientName: formData.get('client-name'),
+      clientEmail: formData.get('client-email'),
+      status: formData.get('client-email'),
+      senderAddress: {
+        street: formData.get('address-from'),
+        city: formData.get('city-from'),
+        postCode: formData.get('post-code-from'),
+        country: formData.get('country-from')
+      },
+      clientAddress: {
+        street: formData.get('street-address-to'),
+        city: formData.get('city-to'),
+        postCode: formData.get('post-code-to'),
+        country: formData.get('country-to')
+      },
+      items: itemIDs.map(item => {
+        return (
+          {
+            name: formData.get(`item-${item.id}-name`),
+            quantity: formData.get(`item-${item.id}-quantity`),
+            price: formData.get(`item-${item.id}-price`), 
+            total: formData.get(`item-${item.id}-total-price`)
+          }
+        )
+      }),
+      total: itemIDs.reduce((sum, item) => sum + formData.get(`item-${item.id}-total-price`), 0)
+    }
 
-    formData.append('date', date)
-    formData.append('payment-terms', terms)
-
-    dispatch(addInvoice(formData))
+    dispatch(addInvoice(invoice))
   }
 
   return (
@@ -55,7 +87,7 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
             <div className='flex justify-sb align-center'>
               <FormElement inputLabel={'City'} inputName={'city-to'} />
               <FormElement inputLabel={'Post Code'} inputName={'post-code-to'} />
-              <FormElement inputLabel={'First name'} inputName={'country-to'} />
+              <FormElement inputLabel={'Country'} inputName={'country-to'} />
             </div>
 
             <div className='flex align-center justify-sb'>
@@ -82,31 +114,7 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
 
               <tbody>
                 {
-                  itemIDs.map(item => {
-                    return (
-                      <tr key={item.id} className='form-element grid'>
-                        <td>
-                          <input type='text' name={`item-${item.id}-name`} aria-labelledby='item-name' className='input' />
-                        </td>
-
-                        <td>
-                          <input type='text' name={`item-${item.id}-quantity`} aria-labelledby='quantity' className='input' />
-                        </td>
-
-                        <td>
-                          <input type='text' name={`item-${item.id}-price`} aria-labelledby='price' className='input'/>
-                        </td>
-
-                        <td className='fw-bold text-secondary'>248.00</td>
-                        <td>
-                          <button type='button' onClick={() => setItems( itemIDs.filter( filter => filter.id !== item.id ))}>
-                            <img src={iconDelete} alt='delete' /> 
-                            <span className='sr-only'>delete item</span>
-                          </button>
-                        </td>
-                      </tr>
-                    )
-                  })
+                  itemIDs.map(item => <Item key={item.id} item={item} setItems={setItems} itemIDs={itemIDs} />)
                 }
               </tbody>
             </table>

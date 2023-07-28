@@ -13,8 +13,8 @@ const Invoice = ({ invoice }) => {
     <p className='fs-300 fw-bold line-height-400 text-primary letter-spacing-200'>£ {total}</p>
 
     <div className='flex-group flex justify-sb align-center'>
-      <div className={`invoice-status invoice-status--${status} flex align-center`}>
-        <span className='fw-bold fs-200 letter-spacing-200 line-height-100'>{status}</span>
+      <div className={`invoice-status invoice-status--${status.toLowerCase()} flex align-center`}>
+        <span className='fw-bold fs-200 letter-spacing-200 line-height-100'>{status.toLowerCase()}</span>
       </div>
       
       <img className='hidden-mobile' src={arrowRight} alt='arrow right'/>

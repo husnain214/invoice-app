@@ -39,6 +39,7 @@ invoiceRouter.post('/', userExtractor, async (request, response) => {
 
   const savedInvoice = await invoice.save()
   user.invoices = user.invoices.concat(savedInvoice._id)
+
   await user.save()
 
   response.status(201).json(savedInvoice)
