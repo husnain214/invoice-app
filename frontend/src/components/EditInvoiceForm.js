@@ -1,18 +1,72 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { today, getLocalTimeZone } from '@internationalized/date'
 
 import AriaDatePicker from './AriaDatePicker'
 import AriaSelectMenu from './AriaSelectMenu'
 import FormElement from './FormElement'
+import Item from './Item'
+import { changeInvoice } from '../reducers/invoiceReducer'
 
 import './InvoiceForm.css'
 
 const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
+  const dispatch = useDispatch()
+  const [terms, setTerms] = useState('Net 30 Days')
+  const [date, setDate] = useState(today(getLocalTimeZone()))
+  const [itemIDs, setItems] = useState([{ id: 1 }])
+
+  const handleSubmit = event => {
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+    const currDate = new Date()
+    currDate.setDate(currDate.getDate() + terms)
+    
+    const invoice = {
+      id: invoiceID,
+      createdAt: date.toString(),
+      paymentTerms: terms,
+      paymentDue: currDate.toISOString().replace(/T.*/,'').split('-').join('-'),
+      description: formData.get('project-description'),
+      clientName: formData.get('client-name'),
+      clientEmail: formData.get('client-email'),
+      status: formData.get('client-email'),
+      senderAddress: {
+        street: formData.get('address-from'),
+        city: formData.get('city-from'),
+        postCode: formData.get('post-code-from'),
+        country: formData.get('country-from')
+      },
+      clientAddress: {
+        street: formData.get('street-address-to'),
+        city: formData.get('city-to'),
+        postCode: formData.get('post-code-to'),
+        country: formData.get('country-to')
+      },
+      items: itemIDs.map(item => {
+        return (
+          {
+            name: formData.get(`item-${item.id}-name`),
+            quantity: formData.get(`item-${item.id}-quantity`),
+            price: formData.get(`item-${item.id}-price`), 
+            total: formData.get(`item-${item.id}-total-price`)
+          }
+        )
+      }),
+      total: itemIDs.reduce((sum, item) => sum + formData.get(`item-${item.id}-total-price`), 0)
+    }
+
+    dispatch(changeInvoice(invoice))
+    setVisibility('false')
+  }
+
   return (
     <div className='invoice-form-container' data-visible={visibility}>
       <div className='scroll-wrapper bg-neutral flow'>
-        <h1 className='fs-300'>Edit <span className='text-cornflower-blue'>#</span>{invoiceID}</h1>
+        <h1 className='fs-300'>Edit <span className='text-cornflower-blue'>#</span>{invoiceID.toUpperCase().slice(0, 6)}</h1>
 
-        <form className='invoice-form flow'>
+        <form onSubmit={handleSubmit} className='invoice-form flow'>
           <section aria-labelledby='bill-from' className='form-section flow'>
             <h4 className='text-cornflower-blue fs-200' id='bill-from'>Bill From</h4>
 
@@ -39,8 +93,8 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
             </div>
 
             <div className='flex align-center justify-sb'>
-              <AriaSelectMenu />
-              <AriaDatePicker />
+              <AriaSelectMenu terms={terms} setTerms={setTerms} />
+              <AriaDatePicker date={date} setDate={setDate} />
             </div>
 
             <FormElement inputLabel={'Project Description'} inputName={'project-description'} />
@@ -61,9 +115,12 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
               </thead>
 
               <tbody>
+                {
+                  itemIDs.map(item => <Item key={item.id} item={item} setItems={setItems} itemIDs={itemIDs} />)
+                }
               </tbody>
             </table>
-            <button className='button button--add' type='button' onClick={() => {}}>Add New Item</button>
+            <button className='button button--add' type='button' onClick={() => setItems( itemIDs.concat( { id: itemIDs.length + 1 }))}>Add New Item</button>
           </section>
           <div className='flex justify-sb align-center'>
             <button type='button' onClick={() => setVisibility('false')} className='button button--discard'>Discard</button>

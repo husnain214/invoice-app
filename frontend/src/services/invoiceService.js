@@ -21,12 +21,12 @@ const getAll = async () => {
 }
 
 const update = async updatedInvoice => {
-  const response = await axios.put(baseUrl, updatedInvoice, config)
+  const response = await axios.put(`${baseUrl}/${updatedInvoice.id}`, updatedInvoice, config)
   return response.data
 }
 
 const remove = async id => {
-  const response = await axios.delete(baseUrl, id, config)
+  const response = await axios.delete(`${baseUrl}/${id}`, config)
   return response.data
 }
 

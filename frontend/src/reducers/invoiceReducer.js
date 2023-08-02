@@ -41,6 +41,7 @@ export const addInvoice = invoice => {
 
 export const removeInvoice = id => {
   return async dispatch => {
+    await invoiceService.remove(id)
     dispatch(deleteInvoice(id))
   }
 }

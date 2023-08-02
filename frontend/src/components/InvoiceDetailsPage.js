@@ -6,6 +6,8 @@ import './Invoice.css'
 import './InvoiceDetailsPage.css'
 import { useEffect, useRef, useState } from 'react'
 import DeleteInvoiceDialog from './DeleteInvoiceDialog'
+import { removeInvoice } from '../reducers/invoiceReducer'
+import { useDispatch } from 'react-redux'
 
 const InvoiceItems = ({ items }) => {
   if(window.innerWidth < 600) {
@@ -60,8 +62,9 @@ const InvoiceItems = ({ items }) => {
 const InvoiceDetailsPage = ({ invoices }) => {
   const { invoiceID } = useParams()
   const [isPageValid, setIsPageValid] = useState(false)
-  const navigate = useNavigate()
   const [invoiceFormVisible, setInvoiceFormVisible] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const InvoiceDetailsRef = useRef()
 
   useEffect(() => {
@@ -76,6 +79,11 @@ const InvoiceDetailsPage = ({ invoices }) => {
 
   const selectedInvoice = invoices.find( invoice => invoice.id === invoiceID)
   const { id, description, senderAddress, createdAt, paymentDue, clientName, clientAddress, clientEmail, items, total } = selectedInvoice
+
+  const deleteInvoice = () => {
+    dispatch(removeInvoice(id))
+    navigate('/')
+  }
 
   const openDeleteDialog = () => {
     InvoiceDetailsRef.current.openDialog()
@@ -184,7 +192,7 @@ const InvoiceDetailsPage = ({ invoices }) => {
         invoiceID={invoiceID}
       />
 
-      <DeleteInvoiceDialog ref={InvoiceDetailsRef} />
+      <DeleteInvoiceDialog deleteInvoice={deleteInvoice} ref={InvoiceDetailsRef} />
     </>
   )
 }

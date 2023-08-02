@@ -57,6 +57,7 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
     }
 
     dispatch(addInvoice(invoice))
+    setVisibility('false')
   }
 
   return (

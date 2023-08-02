@@ -67,4 +67,14 @@ invoiceRouter.get('/', userExtractor, async (request, response) => {
   response.json(invoices)
 })
 
+invoiceRouter.put('/:id', async (request, response) => {
+  const { body } = request
+  const id = request.params.id
+
+  const invoice = await Invoice.findById(id)
+
+  await Invoice.findByIdAndUpdate(id, body, { updated: true })
+  response.json(invoice)
+})
+
 module.exports = invoiceRouter

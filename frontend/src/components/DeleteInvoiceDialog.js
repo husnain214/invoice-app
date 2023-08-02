@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useRef } from 'react'
 
 import './Dialog.css'
 
-const DeleteInvoiceDialog = forwardRef((props, ref) => {
+const DeleteInvoiceDialog = forwardRef(({ deleteInvoice }, ref) => {
   const deleteDialogRef = useRef()
 
   useImperativeHandle(ref, () => ({
@@ -53,7 +53,7 @@ const DeleteInvoiceDialog = forwardRef((props, ref) => {
 
       <div className='flex align-center justify-end'>
         <button className='button button--draft' onClick={closeDialog}>Cancel</button>
-        <button className='button button--delete'>Delete</button>
+        <button className='button button--delete' onClick={deleteInvoice}>Delete</button>
       </div>
     </dialog>
   )
