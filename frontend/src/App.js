@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import UserPage from './components/UserPage'
 import { intializeUser } from './reducers/userReducer'
 import { useEffect } from 'react'
-
+import LoadingScreen from './components/LoadingScreen'
 const App = () => {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
@@ -19,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path='/*' element={user ? <UserPage /> : <AccountPage />} />
       </Routes>
+      <LoadingScreen />
     </>
   )
 }

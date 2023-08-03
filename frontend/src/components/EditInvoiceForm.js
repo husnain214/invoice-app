@@ -89,7 +89,7 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
             <div className='flex justify-sb align-center'>
               <FormElement inputLabel={'City'} inputName={'city-to'} />
               <FormElement inputLabel={'Post Code'} inputName={'post-code-to'} />
-              <FormElement inputLabel={'First name'} inputName={'country-to'} />
+              <FormElement inputLabel={'Country'} inputName={'country-to'} />
             </div>
 
             <div className='flex align-center justify-sb'>

@@ -6,7 +6,7 @@ import './Invoice.css'
 import './InvoiceDetailsPage.css'
 import { useEffect, useRef, useState } from 'react'
 import DeleteInvoiceDialog from './DeleteInvoiceDialog'
-import { removeInvoice } from '../reducers/invoiceReducer'
+import { changeInvoice, removeInvoice } from '../reducers/invoiceReducer'
 import { useDispatch } from 'react-redux'
 
 const InvoiceItems = ({ items }) => {
@@ -78,11 +78,30 @@ const InvoiceDetailsPage = ({ invoices }) => {
   if (!isPageValid) return
 
   const selectedInvoice = invoices.find( invoice => invoice.id === invoiceID)
-  const { id, description, senderAddress, createdAt, paymentDue, clientName, clientAddress, clientEmail, items, total } = selectedInvoice
+  const { id, description, status, senderAddress, paymentTerms, createdAt, paymentDue, clientName, clientAddress, clientEmail, items, total } = selectedInvoice
 
   const deleteInvoice = () => {
     dispatch(removeInvoice(id))
     navigate('/')
+  }
+
+  const markPaid = () => {
+    const invoice = {
+      id: invoiceID,
+      createdAt,
+      paymentTerms,
+      paymentDue,
+      description,
+      clientName,
+      clientEmail,
+      senderAddress,
+      clientAddress,
+      items,
+      total,
+      status: 'Paid'
+    }
+
+    dispatch(changeInvoice(invoice))
   }
 
   const openDeleteDialog = () => {
@@ -105,8 +124,8 @@ const InvoiceDetailsPage = ({ invoices }) => {
             <div className='flex align-center' style={{ 'gap': '4rem' }}>
               <span className='text-secondary'>Status</span>
 
-              <div className={`invoice-status invoice-status--pending flex align-center`}>
-                <span className='fw-bold fs-200 letter-spacing-200 line-height-100'>Pending</span>
+              <div className={`invoice-status invoice-status--${status.toLowerCase()} flex align-center`}>
+                <span className='fw-bold fs-200 letter-spacing-200 line-height-100'>{status}</span>
               </div>
             </div>
 
@@ -115,7 +134,7 @@ const InvoiceDetailsPage = ({ invoices }) => {
                 setInvoiceFormVisible(true)
               }}>Edit</button>
               <button onClick={openDeleteDialog} className='button button--delete'>Delete</button>
-              <button className='button button--mark'>Mark as Paid</button>
+              <button onClick={markPaid} className='button button--mark'>Mark as Paid</button>
             </div>
           </div>
         </header>
