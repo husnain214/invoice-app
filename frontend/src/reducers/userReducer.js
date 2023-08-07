@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import loginService from '../services/loginService'
 import userService from '../services/userService'
 import invoiceService from '../services/invoiceService'
+import { openLoader, closeLoader } from './loaderReducer'
 
 const userSlice = createSlice({
   name: 'user',
@@ -13,9 +14,6 @@ const userSlice = createSlice({
       if (loggedUserJSON) {
         const user = JSON.parse(loggedUserJSON)
         invoiceService.setConfig(user.token)
-
-        console.log(user)
-
         return user
       }
     },
@@ -40,17 +38,21 @@ export const intializeUser = () => {
 
 export const addUser = user => {
   return async dispatch => {
+    dispatch(openLoader())
     try {
       await userService.createAccount(user)
       alert('success')
     } catch (error) {
       alert(error)
     }
+    dispatch(closeLoader())
   }
 }
 
 export const changeTheme = user => {
   return async dispatch => {
+    dispatch(openLoader())
+
     user = { ...user, theme: user.theme ? 0 : 1 }
 
     try {
@@ -60,11 +62,15 @@ export const changeTheme = user => {
     } catch (error) {
       console.error(error)
     }
+
+    dispatch(closeLoader())
   }
 }
 
 export const userLogin = credentials => {
   return async dispatch => {
+    dispatch(openLoader())
+
     try {
       const loggedUser = await loginService.login(credentials)
       dispatch(setUser(loggedUser))
@@ -73,12 +79,18 @@ export const userLogin = credentials => {
     } catch(error) {
       alert(error)
     }
+
+    dispatch(closeLoader())
   }
 }
 
 export const logout = () => {
   return async dispatch => {
+    dispatch(openLoader())
+
     window.localStorage.removeItem('loggedInvoiceAppUser')
     dispatch(removeUser(null))
+
+    dispatch(closeLoader())
   }
 }

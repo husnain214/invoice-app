@@ -6,7 +6,7 @@ import SideBar from './SideBar'
 import InvoiceList from './InvoiceList.js'
 import InvoiceDetailsPage from './InvoiceDetailsPage'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeTheme } from '../reducers/userReducer'
+import { changeTheme, logout } from '../reducers/userReducer'
 import { initializeInvoices } from '../reducers/invoiceReducer'
 
 const UserPage = () => {
@@ -39,14 +39,10 @@ const UserPage = () => {
     if(filtersList.length === 0) setFilteredInvoices(invoices)
   } 
 
-  const toggleTheme = () => {
-    dispatch(changeTheme(user))
-  }
-
   return (
     <>
       <div className='user-page'>
-        <SideBar toggleTheme={toggleTheme} />
+        <SideBar />
 
         <div className='p-relative'>
           <Routes>

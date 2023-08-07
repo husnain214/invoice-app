@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { today, getLocalTimeZone } from '@internationalized/date'
 import { addInvoice } from '../reducers/invoiceReducer'
@@ -12,14 +12,21 @@ import './InvoiceForm.css'
 
 const InvoiceForm = ({ visibility, setVisibility }) => {
   const dispatch = useDispatch()
+  const formRef = useRef()
   const [itemIDs, setItems] = useState([{ id: 1 }])
   const [date, setDate] = useState(today(getLocalTimeZone()))
   const [terms, setTerms] = useState('Net 30 Days')
 
-  const handleSubmit = event => {
+  const saveAndSend = event => {
     event.preventDefault()
 
-    const formData = new FormData(event.target)
+    newInvoice()
+  }
+
+  const saveAsDraft = () => newInvoice('Draft')
+
+  const newInvoice = (invoiceStatus = 'Pending') => {
+    const formData = new FormData(formRef.current)
     const currDate = new Date()
     currDate.setDate(currDate.getDate() + terms)
     
@@ -30,7 +37,7 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
       description: formData.get('project-description'),
       clientName: formData.get('client-name'),
       clientEmail: formData.get('client-email'),
-      status: formData.get('client-email'),
+      status: invoiceStatus,
       senderAddress: {
         street: formData.get('address-from'),
         city: formData.get('city-from'),
@@ -58,14 +65,15 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
 
     dispatch(addInvoice(invoice))
     setVisibility('false')
+    formRef.current.querySelectorAll('input').forEach(input => input.value = '')
   }
 
   return (
     <div className='invoice-form-container' data-visible={visibility}>
-      <div className='scroll-wrapper bg-neutral flow'>
+      <div className='scroll-wrapper bg-body flow'>
         <h1 className='fs-300'>New Invoice</h1>
 
-        <form className='invoice-form flow' method='POST' action='' onSubmit={handleSubmit}>
+        <form className='invoice-form flow' method='POST' action='' ref={formRef} onSubmit={saveAndSend}>
           <section aria-labelledby='bill-from' className='form-section flow'>
             <h4 className='text-cornflower-blue fs-200' id='bill-from'>Bill From</h4>
 
@@ -92,8 +100,8 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
             </div>
 
             <div className='flex align-center justify-sb'>
-              <AriaSelectMenu terms={terms} setTerms={setTerms} />
               <AriaDatePicker date={date} setDate={setDate} />
+              <AriaSelectMenu terms={terms} setTerms={setTerms} />
             </div>
 
             <FormElement inputLabel={'Project Description'} inputName={'project-description'} />
@@ -125,7 +133,7 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
             <button type='button' onClick={() => setVisibility('false')} className='button button--discard'>Discard</button>
         
             <div className='flex justify-sb align-center'>
-              <button className='button button--draft' type='button'>Save as Draft</button>
+              <button className='button button--draft' onClick={saveAsDraft} type='button'>Save as Draft</button>
               <button className='button button--mark' type='submit'>Save and Send</button>
             </div>
           </div>

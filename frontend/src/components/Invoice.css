@@ -94,3 +94,7 @@ a {
 .invoice-status--draft {
   --accent-color: var(--oxford-blue);
 }
+
+body[data-theme='dark'] .invoice-status--draft {
+  --accent-color: var(--selago);
+}

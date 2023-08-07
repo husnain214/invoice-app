@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import invoiceService from '../services/invoiceService'
+import { closeLoader, openLoader } from '../reducers/loaderReducer'
 
 const invoiceSlice = createSlice({
   name: 'invoice',
@@ -26,8 +27,12 @@ export default invoiceSlice.reducer
 
 export const initializeInvoices = () => {
   return async dispatch => {
-    const invoices = await invoiceService.getAll()
-    dispatch(setInvoices(invoices))
+    try {
+      const invoices = await invoiceService.getAll()
+      dispatch(setInvoices(invoices))
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
@@ -48,7 +53,15 @@ export const removeInvoice = id => {
 
 export const changeInvoice = invoice => {
   return async dispatch => {
-    const changedInvoice = await invoiceService.update(invoice)
-    dispatch(updateInvoice(changedInvoice))
+    dispatch(openLoader())
+
+    try {
+      const changedInvoice = await invoiceService.update(invoice)
+      dispatch(updateInvoice(changedInvoice))
+    } catch (error) {
+      console.error(error)
+    }
+
+    dispatch(closeLoader())
   }
 }

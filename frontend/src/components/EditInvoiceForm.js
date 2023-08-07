@@ -63,7 +63,7 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
 
   return (
     <div className='invoice-form-container' data-visible={visibility}>
-      <div className='scroll-wrapper bg-neutral flow'>
+      <div className='scroll-wrapper bg-body flow'>
         <h1 className='fs-300'>Edit <span className='text-cornflower-blue'>#</span>{invoiceID.toUpperCase().slice(0, 6)}</h1>
 
         <form onSubmit={handleSubmit} className='invoice-form flow'>
@@ -83,7 +83,7 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
             <h4 className='text-cornflower-blue fs-200' id='bill-to'>Bill To</h4>
 
             <FormElement inputLabel={"Client's Name"} inputName={'client-name'} />
-            <FormElement inputLabel={"Client's Email"} inputName={'client-email'} />
+            <FormElement inputLabel={"Client's Email"} inputName={'client-email'} type='email' />
             <FormElement inputLabel={'Street Address'} inputName={'street-address-to'} />
 
             <div className='flex justify-sb align-center'>
@@ -93,8 +93,8 @@ const InvoiceForm = ({ visibility, setVisibility, invoiceID }) => {
             </div>
 
             <div className='flex align-center justify-sb'>
-              <AriaSelectMenu terms={terms} setTerms={setTerms} />
               <AriaDatePicker date={date} setDate={setDate} />
+              <AriaSelectMenu terms={terms} setTerms={setTerms} />
             </div>
 
             <FormElement inputLabel={'Project Description'} inputName={'project-description'} />

@@ -13,6 +13,10 @@ const AccountPage = () => {
         <Route path='/' element={<LoginForm />} />
         <Route path='/create-account' element={<SignupForm />} />
       </Routes>
+
+      <footer>
+        Design from <a target='_blank' rel='noreferrer' href='https://www.frontendmentor.io' className='text-cornflower-blue'>Frontend Mentor</a>
+      </footer>
     </div>
   )
 }

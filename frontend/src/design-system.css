@@ -5,7 +5,7 @@
   --heliotrope: 252 100% 73%;
   --mirage: 233 31% 17%;
   --ebony-clay: 233 30% 21%;
-  --selago: 231, 77%, 93%;
+  --selago: 231 77% 93%;
   --bali-hai: 231 20% 61%;
   --ship-cove: 231 37% 63%;
   --vulcan: 228 29% 7%;
@@ -17,7 +17,7 @@
   --pizazz: 34 100% 50%;
   --oxford-blue: 231 20% 27%;
   --white: 0 0% 100%;
-  --frosty-pearl: 228, 71%, 99%;
+  --frosty-pearl: 228 71% 99%;
   --midnight-indigo: 232 38% 45% / 0.251;
 
   --ff-primary: 'League Spartan', sans-serif;
@@ -283,7 +283,7 @@ select {
 
 .bg-primary { background-color: hsl( var(--clr-primary) ); }
 .bg-secondary { background-color: hsl( var(--clr-secondary) ); }
-.bg-body { background-color: hsl( var(--bg-body) ); }
+.bg-body { background-color: hsl( var(--clr-body) ); }
 .bg-oxford-blue { background-color: hsl( var(--oxford-blue) ); }
 .bg-neutral { background-color: hsl( var(--clr-neutral-bg) ); }
 
@@ -337,6 +337,7 @@ body[data-theme='dark'] .button {
 
   --draft-text-clr: var(--selago);
   --draft-hover-bg-clr: var(--mirage);
+  --draft-bg-clr: var(--oxford-blue)
 }
 
 .button {

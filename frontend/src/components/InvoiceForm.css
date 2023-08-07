@@ -1,5 +1,5 @@
 .invoice-form-container {
-  --left-spacing: clamp(1rem, 2vw, 10rem);
+  --left-spacing: .5rem;
   --padding-right: clamp(2rem, 3vw, 3.5rem);
 
   position: fixed;
@@ -26,13 +26,12 @@
 
 @media (width < 45em) {
   .invoice-form-container {
-    /* position: sticky; */
     left: 0;
   }
 
   .scroll-wrapper {
     border-radius: 0;
-    width: 90%;
+    width: 100%;
     padding-top: 20vh;
   }
 

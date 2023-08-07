@@ -7,7 +7,7 @@ const FormElement = ({ inputName, inputLabel, type='text', placeholder='' }) => 
     <div className='form-element'>
       <label className='label' htmlFor={formInput.name}>{inputLabel}</label>
 
-      <input {...formInput} className='input' placeholder={placeholder} />
+      <input {...formInput} required className='input' placeholder={placeholder} />
     </div>
   )
 }

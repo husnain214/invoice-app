@@ -21,7 +21,8 @@ const Item = ({ item, setItems, itemIDs }) => {
 
       <td>
         <input 
-          type='number' 
+          type='text'
+          inputMode='numeric' 
           name={`item-${item.id}-quantity`} 
           value={quantity}
           onChange={({ target }) => setQuantity(target.value)}
@@ -32,17 +33,18 @@ const Item = ({ item, setItems, itemIDs }) => {
       <td>
         <input 
           type='text' 
+          inputMode='numeric' 
           name={`item-${item.id}-price`} 
           value={price}
           onChange={({ target }) => setPrice(target.value)}
           aria-labelledby='price' 
-          className='input'/>
+          className='input' />
       </td>
 
       <td className='fw-bold text-secondary'>
         <input 
-        className='fw-bold text-secondary' 
-        style={{width: 'min-content', outline: 'none', border: 0, textAlign: 'center'}} 
+        className='input fw-bold text-secondary' 
+        style={{ outline: 'none', border: 0, textAlign: 'center'}} 
         readOnly 
         name={`item-${item.id}-total-price`}
         value={`${price * quantity}.00`} />

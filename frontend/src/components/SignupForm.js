@@ -61,7 +61,7 @@ const SignupForm = () => {
             inputLabel={'Profile Picture'}
           />
 
-          <button type="submit" className='button'>Signup now</button>
+          <button type="submit" className='button cta-btn'>Signup now</button>
           <div className='span-decor'>
             <span>or</span>
           </div>

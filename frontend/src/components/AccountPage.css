@@ -1,24 +1,31 @@
-#root {
+#root:has(.account-page) {
   display: grid;
   align-content: center;
+  padding-block: 2em;
 }
 
 .account-page {
   --container-width: 35em;
 }
 
-.account-page--form > .grid {
-  grid-auto-flow: column;
+@media( width > 45em ) {
+  .account-page--form > .grid {
+    grid-auto-flow: column;
+  }
 }
 
 .account-page header {
   text-align: center;
 }
 
-.account-page button[type='submit'] {
+.account-page .cta-btn {
   background-color: hsl( var(--cornflower-blue) );
   color: hsl( var(--white) );
   justify-content: center;
+}
+
+.account-page .cta-btn:nth-of-type(2) {
+  background-color: hsl( var(--ship-cove) );
 }
 
 .account-page a.button {
@@ -46,4 +53,8 @@
   height: 1px;
   width: 100%;
   background-color: hsl( var(--cornflower-blue) / .5 );
+}
+
+footer { 
+  text-align: center;
 }

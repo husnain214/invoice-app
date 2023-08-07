@@ -11,7 +11,6 @@ const setConfig = (newToken) => {
 
 const create = async invoice => {
   const response = await axios.post(baseUrl, invoice, config)
-
   return response.data
 }
 

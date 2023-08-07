@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import FormElement from './FormElement'
 import { Link } from 'react-router-dom'
 import { userLogin } from '../reducers/userReducer'
@@ -6,7 +6,6 @@ import { useRef } from 'react'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
   const ref = useRef()
   
   const handleSubmit = event => {
@@ -17,6 +16,14 @@ const LoginForm = () => {
     dispatch(userLogin(formData))
     event.target.querySelectorAll('input').forEach(input => input.value = '')
   }
+
+  const demoLogin = () => {
+    const formData = new FormData()
+    formData.append('email', process.env.REACT_APP_DEMO_EMAIL)
+    formData.append('password', process.env.REACT_APP_DEMO_PASSWORD)
+    dispatch(userLogin(formData))
+  }
+
   return (
     <>
       <header className='flow'>
@@ -40,7 +47,8 @@ const LoginForm = () => {
             placeholder={'**********'}
           />
 
-          <button type="submit" className='button'>Login</button>
+          <button type="submit" className='button cta-btn'>Login</button>
+          <button onClick={demoLogin} type='button' className='button cta-btn'>Demo</button>
           <div className='span-decor'>
             <span>or</span>
           </div>

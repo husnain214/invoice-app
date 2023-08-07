@@ -2,7 +2,7 @@
   .user-page {
     display: grid;
     min-height: 100vh;
-    grid-template-columns: minmax(min-content, 6.4375rem) 1fr;
+    grid-template-columns: minmax(min-content, 5rem) 1fr;
   }
 }
 
@@ -24,9 +24,9 @@
 
 .sidebar {
   display: grid;
-  grid-template-columns: minmax(auto, 80px) 1fr minmax(auto, 80px) minmax(auto, 80px);
+  grid-template-columns: minmax(auto, 80px) 1fr minmax(auto, 80px) minmax(auto, 80px) minmax(auto, 80px);
   grid-template-rows: auto;
-  grid-template-areas: 'logo . theme-icon avatar';
+  grid-template-areas: 'logo . theme-icon avatar exit';
 
   justify-items: stretch;
   overflow: hidden;
@@ -44,6 +44,7 @@
     'logo'
     '.'
     'theme-icon'
+    'exit'
     'avatar';
     height: 100vh;
     border-radius: 0 20px 20px 0;
@@ -95,11 +96,16 @@ body[data-theme='light'] .sidebar {
 
 .sidebar > *:nth-child(3) {
   grid-area: avatar;
+  border-top: 1px solid hsl( var(--selago) / .1 );
 }
 
 .sidebar > *:nth-child(3) > img {
   border-radius: 50%;
   overflow: hidden;
   max-width: 2.5rem;
+}
+
+.sidebar > *:nth-child(4) {
+  grid-area: exit;
 }
 
