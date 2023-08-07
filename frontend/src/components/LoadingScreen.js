@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux'
 const LoadingScreen = () => {
   const isLoading = useSelector(state => state.loader)
 
-  console.log(isLoading)
-
   return(
     <div className='loading-screen' data-loading={isLoading}>
       <BounceLoader color='hsl( 252 94% 67% )' />
