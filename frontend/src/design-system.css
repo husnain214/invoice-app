@@ -448,6 +448,10 @@ body[data-theme='dark'] .button {
   width: 100%;
 }
 
+.form-element .input:invalid {
+  border-color: hsl( var(--burnt-siena) );
+}
+
 .form-element--button {
   flex-shrink: 0;
   background-color: hsl( var(--input-bg-clr) );
@@ -659,4 +663,3 @@ body[data-theme='dark'] .button {
     --label-color: GrayText;
  }
 }
-

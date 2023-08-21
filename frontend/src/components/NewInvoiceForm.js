@@ -90,7 +90,7 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
             <h4 className='text-cornflower-blue fs-200' id='bill-to'>Bill To</h4>
 
             <FormElement inputLabel={"Client's Name"} inputName={'client-name'} />
-            <FormElement inputLabel={"Client's Email"} inputName={'client-email'} />
+            <FormElement inputLabel={"Client's Email"} inputName={'client-email'} type='email' />
             <FormElement inputLabel={'Street Address'} inputName={'street-address-to'} />
 
             <div className='flex justify-sb align-center'>
@@ -127,6 +127,13 @@ const InvoiceForm = ({ visibility, setVisibility }) => {
                 }
               </tbody>
             </table>
+            <div className='errors'>
+              <p className='error-message'>
+              - All fields must be added</p>
+              <p className='error-message'>
+              - An item must be added
+              </p>
+            </div>
             <button className='button button--add' type='button' onClick={() => setItems( itemIDs.concat( { id: itemIDs.length + 1 }))}>Add New Item</button>
           </section>
           <div className='flex justify-sb align-center'>

@@ -101,3 +101,11 @@ table tr.form-element > *:nth-child(4) {
 table tr.form-element > *:last-child {
   align-self: center;
 }
+
+.errors {
+  display: none;
+}
+
+.invoice-form:has(.input:invalid) > .errors {
+  display: block;
+}
